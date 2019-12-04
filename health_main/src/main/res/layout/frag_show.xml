@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+      >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.zhouwei.mzbanner.MZBannerView
+                    android:id="@+id/show_banner"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_200"></com.zhouwei.mzbanner.MZBannerView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_3"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:background="#3087ea" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="知识宝典"
+                        android:textColor="#3087ea"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_2"
+                    android:background="#F2F2F2" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_209">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:text="常见病症"
+                            android:textSize="@dimen/sp_14"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/show_disease"
+                            android:layout_width="@dimen/dp_157"
+                            android:layout_height="@dimen/dp_157"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_38"
+                            android:background="@drawable/common_disease" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="@dimen/dp_6"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_177"
+                        android:background="#F2F2F2" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                     >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginEnd="@dimen/dp_109"
+                            android:text="常用药品"
+                            android:textSize="@dimen/sp_14"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/show_drugs"
+                            android:layout_width="@dimen/dp_157"
+                            android:layout_height="@dimen/dp_157"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="@dimen/dp_38"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:background="@drawable/common_drugs" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_4"
+                        android:layout_marginTop="@dimen/dp_205"
+                        android:background="#F2F2F2" />
+                </RelativeLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_3"
+                        android:layout_height="@dimen/dp_18"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:background="#3087ea" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="问诊咨询"
+                        android:textColor="#3087ea"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_2"
+                    android:background="#F2F2F2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_12"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/show_inner"
+                                android:layout_width="@dimen/dp_56"
+                                android:layout_height="@dimen/dp_56"
+                                android:layout_marginLeft="@dimen/dp_20"
+                                android:src="@drawable/internal_medicine" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/dp_66"
+                                android:text="内科"
+                                android:textSize="@dimen/sp_12" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_12"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/show_eye"
+                                android:layout_width="@dimen/dp_56"
+                                android:layout_height="@dimen/dp_56"
+                                android:layout_marginLeft="@dimen/dp_20"
+                                android:src="@drawable/ophthalmology" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/dp_66"
+                                android:text="眼科"
+                                android:textSize="@dimen/sp_12" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_12"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/show_bone"
+                                android:layout_width="@dimen/dp_56"
+                                android:layout_height="@dimen/dp_56"
+                                android:layout_marginLeft="@dimen/dp_20"
+                                android:src="@drawable/orthopedics" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/dp_66"
+                                android:text="骨科"
+                                android:textSize="@dimen/sp_12" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_12"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/show_little"
+                                android:layout_width="@dimen/dp_56"
+                                android:layout_height="@dimen/dp_56"
+                                android:layout_marginLeft="@dimen/dp_20"
+                                android:src="@drawable/pediatrics" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/dp_66"
+                                android:text="小儿科"
+                                android:textSize="@dimen/sp_12" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_12"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/show_pass"
+                                android:layout_width="@dimen/dp_56"
+                                android:layout_height="@dimen/dp_56"
+                                android:layout_marginLeft="@dimen/dp_20"
+                                android:src="@drawable/infectious_disease" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/dp_66"
+                                android:text="传染病科"
+                                android:textSize="@dimen/sp_12" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_12"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/show_skin"
+                                android:layout_width="@dimen/dp_56"
+                                android:layout_height="@dimen/dp_56"
+                                android:layout_marginLeft="@dimen/dp_20"
+                                android:src="@drawable/dermatology" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/dp_66"
+                                android:text="皮肤性病"
+                                android:textSize="@dimen/dp_12" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_12"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/show_ear"
+                                android:layout_width="@dimen/dp_56"
+                                android:layout_height="@dimen/dp_56"
+                                android:layout_marginLeft="@dimen/dp_20"
+                                android:src="@drawable/otolaryngology" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/dp_66"
+                                android:text="耳鼻喉科"
+                                android:textSize="@dimen/dp_12" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_12"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/show_spirit"
+                                android:layout_width="@dimen/dp_56"
+                                android:layout_height="@dimen/dp_56"
+                                android:layout_marginLeft="@dimen/dp_20"
+                                android:src="@drawable/psychiatry" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/dp_66"
+                                android:text="精神病科"
+                                android:textSize="@dimen/dp_12" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_4"
+                        android:background="#F2F2F2" />
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_3"
+                        android:layout_height="@dimen/dp_18"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:background="#3087ea" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="健康测评"
+                        android:textColor="#3087ea"
+                        android:textSize="@dimen/sp_16" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_2"
+                    android:background="#F2F2F2" />
+
+                <ImageView
+                    android:id="@+id/show_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_160"
+                    android:background="@drawable/health_assessment" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_4"
+                    android:background="#F2F2F2" />
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_3"
+                        android:layout_height="@dimen/dp_18"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:background="#3087ea" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="健康咨询"
+                        android:textColor="#3087ea"
+                        android:textSize="@dimen/sp_16" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_2"
+                    android:background="#F2F2F2" />
+
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/show_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></com.google.android.material.tabs.TabLayout>
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/show_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></androidx.viewpager.widget.ViewPager>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+    <ImageView
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_marginTop="@dimen/dp_32"
+        android:background="@drawable/wallet_icon_clock_n"
+        />
+    <ImageView
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_12"
+        android:layout_marginTop="@dimen/dp_32"
+        android:background="@drawable/common_nav_message_white_n"
+        />
+</RelativeLayout>

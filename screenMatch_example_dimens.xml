@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
 
     <!-- Your custom size defind by references, can be writted in anywhere, any module, any values/*.xml, for example: -->
@@ -389,7 +389,6 @@
     <dimen name="dp_365">365dp</dimen>
     <dimen name="dp_370">370dp</dimen>
     <dimen name="dp_400">400dp</dimen>
-    <dimen name="dp_404">400dp</dimen>
     <dimen name="dp_410">410dp</dimen>
     <dimen name="dp_422">422dp</dimen>
     <dimen name="dp_472">472dp</dimen>

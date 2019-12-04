@@ -43,4 +43,5 @@
             android:button="@null"
             android:drawableTop="@drawable/common_tab_video_n"></RadioButton>
     </RadioGroup>
+
 </LinearLayout>
