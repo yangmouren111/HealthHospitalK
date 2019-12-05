@@ -9,7 +9,7 @@ import io.reactivex.Observable;
 /**
  * Time:  2019-12-05
  * Author:  杨世博
- * Description:
+ * Description: 查询健康资讯板块
  */
 public class PlateListPresenter extends WDPresenter<IAppRequest> {
     public PlateListPresenter(DataCall dataCall) {

@@ -7,12 +7,12 @@ import android.os.Bundle;
 import com.wd.common.core.WDActivity;
 import com.wd.health_main.R;
 
-public class LittleActivity extends WDActivity {
+public class DiseaseKnowledgeActivity extends WDActivity {
 
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_little;
+        return R.layout.activity_disease_knowledge;
     }
 
     @Override

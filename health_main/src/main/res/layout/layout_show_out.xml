@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp_80"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_48"
+        android:background="@android:color/white"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/show_name_adapter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="健康内科"
+            android:textSize="@dimen/sp_12"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+</LinearLayout>

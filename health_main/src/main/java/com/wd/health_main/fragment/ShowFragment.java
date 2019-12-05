@@ -1,55 +1,45 @@
 package com.wd.health_main.fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.google.android.material.tabs.TabLayout;
 import com.wd.common.bean.Banner;
+import com.wd.common.bean.DepartmentBean;
 import com.wd.common.bean.FormaBean;
 import com.wd.common.bean.PlateBean;
 import com.wd.common.core.DataCall;
 import com.wd.common.core.WDFragment;
 import com.wd.common.core.exception.ApiException;
-import com.wd.common.util.Constant;
 import com.wd.health_main.R;
 import com.wd.health_main.R2;
-import com.wd.health_main.activity.BoneActivity;
 import com.wd.health_main.activity.DiseaseActivity;
-import com.wd.health_main.activity.DrugsActivity;
-import com.wd.health_main.activity.EarActivity;
-import com.wd.health_main.activity.EyeActivity;
-import com.wd.health_main.activity.InnerActivity;
-import com.wd.health_main.activity.LittleActivity;
-import com.wd.health_main.activity.PassActivity;
-import com.wd.health_main.activity.SkinActivity;
-import com.wd.health_main.activity.SpiritActivity;
-import com.wd.health_main.adapter.FragAdapter;
+import com.wd.health_main.adapter.ConsultAdapter;
+import com.wd.health_main.adapter.ShowOutAdapter;
+import com.wd.health_main.adapter.Show_InquiryAdaper;
 import com.wd.health_main.presenter.BannerPresenter;
+import com.wd.health_main.presenter.DepartmentPresenter;
 import com.wd.health_main.presenter.FormationListPresenter;
 import com.wd.health_main.presenter.PlateListPresenter;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
 import com.zhouwei.mzbanner.holder.MZViewHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
  * Time:  2019-12-04
  * Author:  杨世博
- * Description:
+ * Description: 展示首页
  */
 public class ShowFragment extends WDFragment {
 
@@ -59,31 +49,22 @@ public class ShowFragment extends WDFragment {
     ImageView showDisease;
     @BindView(R2.id.show_drugs)
     ImageView showDrugs;
-    @BindView(R2.id.show_inner)
-    ImageView showInner;
-    @BindView(R2.id.show_eye)
-    ImageView showEye;
-    @BindView(R2.id.show_bone)
-    ImageView showBone;
-    @BindView(R2.id.show_little)
-    ImageView showLittle;
-    @BindView(R2.id.show_pass)
-    ImageView showPass;
-    @BindView(R2.id.show_skin)
-    ImageView showSkin;
-    @BindView(R2.id.show_ear)
-    ImageView showEar;
-    @BindView(R2.id.show_spirit)
-    ImageView showSpirit;
     @BindView(R2.id.show_image)
     ImageView showImage;
-    @BindView(R2.id.show_tab)
-    TabLayout showTab;
-    @BindView(R2.id.show_view)
-    ViewPager showView;
+    @BindView(R2.id.show_recyvle_view)
+    RecyclerView showRecyvleView;
+    @BindView(R2.id.show_out_view)
+    RecyclerView showOutView;
+    @BindView(R2.id.show_inner_view)
+    RecyclerView showInnerView;
+
     private FormationListPresenter formationListPresenter;
     private PlateListPresenter plateListPresenter;
     private BannerPresenter bannerPresenter;
+    private DepartmentPresenter departmentPresenter;
+    private Show_InquiryAdaper show_inquiryAdaper;
+    private ShowOutAdapter showOutAdapter;
+    private ConsultAdapter consultAdapter;
 
     @Override
     public String getPageName() {
@@ -99,69 +80,45 @@ public class ShowFragment extends WDFragment {
     protected void initView() {
         bannerPresenter = new BannerPresenter(new banner());
         bannerPresenter.reqeust();
+        //健康养生
+
+        formationListPresenter = new FormationListPresenter(new format());
+        formationListPresenter.reqeust(1, 1, 5);
+        departmentPresenter = new DepartmentPresenter(new departt());
+        departmentPresenter.reqeust();
+        show_inquiryAdaper = new Show_InquiryAdaper();
+        showRecyvleView.setAdapter(show_inquiryAdaper);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
+        showRecyvleView.setLayoutManager(gridLayoutManager);
         plateListPresenter = new PlateListPresenter(new plate());
         plateListPresenter.reqeust();
-//        formationListPresenter = new FormationListPresenter(new format());
-//        formationListPresenter.reqeust();
-//
-//        List<Fragment> list = new ArrayList<>();
-//
-//       // list.add(new VideoFragment());
-//
-//        FragAdapter adapter = new FragAdapter(getChildFragmentManager(), list);
-//        showView.setAdapter(adapter);
-//        showTab.setupWithViewPager(showView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        showOutView.setLayoutManager(linearLayoutManager);
+        showOutAdapter = new ShowOutAdapter();
+        showOutView.setAdapter(showOutAdapter);
+        showOutAdapter.setOnItemClickListener(new ShowOutAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                formationListPresenter.reqeust(position, 1, 5);
+            }
+        });
 
-
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext());
+        showInnerView.setLayoutManager(linearLayoutManager1);
+        consultAdapter = new ConsultAdapter();
+        showInnerView.setAdapter(consultAdapter);
     }
 
-
-    @SuppressLint("InvalidR2Usage")
-    @OnClick({R2.id.show_banner, R2.id.show_disease, R2.id.show_drugs, R2.id.show_inner, R2.id.show_eye, R2.id.show_bone, R2.id.show_little, R2.id.show_pass, R2.id.show_skin, R2.id.show_ear, R2.id.show_spirit, R2.id.show_image})
+    @OnClick({R2.id.show_banner, R2.id.show_disease, R2.id.show_drugs, R2.id.show_image})
     public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R2.id.show_banner:
-                break;
-            case R2.id.show_disease:
-                intentByRouter(Constant.ACTIVITY_URL_DISE);
-                break;
-            case R2.id.show_drugs:
-               intent(DrugsActivity.class);
-                break;
-            case R2.id.show_inner:
-                Intent intent3 = new Intent(getActivity(), InnerActivity.class);
-                startActivity(intent3);
-                break;
-            case R2.id.show_eye:
-                Intent intent4 = new Intent(getActivity(), EyeActivity.class);
-                startActivity(intent4);
-                break;
-            case R2.id.show_bone:
-                Intent intent10 = new Intent(getActivity(), BoneActivity.class);
-                startActivity(intent10);
-                break;
-            case R2.id.show_little:
-                Intent intent5 = new Intent(getActivity(), LittleActivity.class);
-                startActivity(intent5);
-                break;
-            case R2.id.show_pass:
-                Intent intent6 = new Intent(getActivity(), PassActivity.class);
-                startActivity(intent6);
-                break;
-            case R2.id.show_skin:
-                Intent intent7 = new Intent(getActivity(), SkinActivity.class);
-                startActivity(intent7);
-                break;
-            case R2.id.show_ear:
-                Intent intent8 = new Intent(getActivity(), EarActivity.class);
-                startActivity(intent8);
-                break;
-            case R2.id.show_spirit:
-                Intent intent9 = new Intent(getActivity(), SpiritActivity.class);
-                startActivity(intent9);
-                break;
-            case R2.id.show_image:
-                break;
+        int i = view.getId();
+        if (i == R.id.show_banner) {
+        } else if (i == R.id.show_disease) {
+            intent(DiseaseActivity.class);
+        } else if (i == R.id.show_drugs) {
+            intent(DiseaseActivity.class);
+        } else if (i == R.id.show_image) {
         }
     }
 
@@ -206,8 +163,9 @@ public class ShowFragment extends WDFragment {
 
         @Override
         public void success(List<PlateBean> data, Object... args) {
+            showOutAdapter.addAll(data);
+            show_inquiryAdaper.notifyDataSetChanged();
 
-           // showTab.getTabAt(0).setText(data.get(0).name);
         }
 
         @Override
@@ -219,7 +177,22 @@ public class ShowFragment extends WDFragment {
     private class format implements DataCall<List<FormaBean>> {
         @Override
         public void success(List<FormaBean> data, Object... args) {
+            consultAdapter.clear();
+            consultAdapter.addAll(data);
+            consultAdapter.notifyDataSetChanged();
+        }
 
+        @Override
+        public void fail(ApiException data, Object... args) {
+
+        }
+    }
+
+    private class departt implements DataCall<List<DepartmentBean>> {
+        @Override
+        public void success(List<DepartmentBean> data, Object... args) {
+            show_inquiryAdaper.addAll(data);
+            show_inquiryAdaper.notifyDataSetChanged();
         }
 
         @Override

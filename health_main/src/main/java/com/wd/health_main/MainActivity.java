@@ -78,16 +78,15 @@ public class MainActivity extends WDActivity {
             @SuppressLint("InvalidR2Usage")
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R2.id.main_btn_home:
-                        mainPager.setCurrentItem(0);
-                        break;
-                    case R2.id.main_btn_cicle:
-                        mainPager.setCurrentItem(1);
-                        break;
-                    case R2.id.main_btn_video:
-                        mainPager.setCurrentItem(2);
-                        break;
+                if (checkedId == R.id.main_btn_home) {
+                    mainPager.setCurrentItem(0);
+
+                } else if (checkedId == R.id.main_btn_cicle) {
+                    mainPager.setCurrentItem(1);
+
+                } else if (checkedId == R.id.main_btn_video) {
+                    mainPager.setCurrentItem(2);
+
                 }
             }
         });

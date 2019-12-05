@@ -3,10 +3,10 @@ package com.wd.common.bean;
 /**
  * Time:  2019-12-05
  * Author:  杨世博
- * Description:
+ * Description: 健康咨询
  */
 public class FormaBean {
-    //  "id": 21,
+    //            "id": 21,
     //            "plateId": 2,
     //            "releaseTime": 1569464574000,
     //            "source": "@weidu",

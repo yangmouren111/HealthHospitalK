@@ -9,7 +9,7 @@ import io.reactivex.Observable;
 /**
  * Time:  2019-12-04
  * Author:  杨世博
- * Description:
+ * Description: banner
  */
 public class BannerPresenter extends WDPresenter<IAppRequest> {
     public BannerPresenter(DataCall dataCall) {

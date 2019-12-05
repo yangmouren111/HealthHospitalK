@@ -9,15 +9,15 @@ import io.reactivex.Observable;
 /**
  * Time:  2019-12-05
  * Author:  杨世博
- * Description: 根据资讯板块查询资讯列表
+ * Description:  根据科室查询对应病症
  */
-public class FormationListPresenter extends WDPresenter<IAppRequest> {
-    public FormationListPresenter(DataCall dataCall) {
+public class CategroyPresenter extends WDPresenter<IAppRequest> {
+    public CategroyPresenter(DataCall dataCall) {
         super(dataCall);
     }
 
     @Override
     protected Observable getModel(Object... args) {
-        return iRequest.findInformationList((int) args[0], (int) args[1], (int) args[2]);
+        return iRequest.findDiseaseCategory((int) args[0]);
     }
 }

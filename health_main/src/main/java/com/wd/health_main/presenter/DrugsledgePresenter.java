@@ -9,15 +9,15 @@ import io.reactivex.Observable;
 /**
  * Time:  2019-12-05
  * Author:  杨世博
- * Description: 根据资讯板块查询资讯列表
+ * Description:
  */
-public class FormationListPresenter extends WDPresenter<IAppRequest> {
-    public FormationListPresenter(DataCall dataCall) {
+public class DrugsledgePresenter extends WDPresenter<IAppRequest> {
+    public DrugsledgePresenter(DataCall dataCall) {
         super(dataCall);
     }
 
     @Override
     protected Observable getModel(Object... args) {
-        return iRequest.findInformationList((int) args[0], (int) args[1], (int) args[2]);
+        return iRequest.findDrugsKnowledge((int) args[0]);
     }
 }

@@ -3,23 +3,15 @@
     package="com.wd.health_main">
 
     <application>
-        <activity android:name="com.wd.health_main.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.wd.health_main.activity.DrugsActivity" />
-        <activity android:name="com.wd.health_main.activity.DiseaseActivity"/>
-        <activity android:name="com.wd.health_main.activity.InnerActivity" />
-        <activity android:name="com.wd.health_main.activity.EyeActivity" />
-        <activity android:name="com.wd.health_main.activity.BoneActivity" />
-        <activity android:name="com.wd.health_main.activity.LittleActivity" />
-        <activity android:name="com.wd.health_main.activity.PassActivity" />
-        <activity android:name="com.wd.health_main.activity.SkinActivity" />
-        <activity android:name="com.wd.health_main.activity.EarActivity" />
-        <activity android:name="com.wd.health_main.activity.SpiritActivity"></activity>
+        <activity android:name=".activity.DiseaseActivity" />
+        <activity android:name=".activity.DiseaseKnowledgeActivity"></activity>
     </application>
 
 </manifest>
