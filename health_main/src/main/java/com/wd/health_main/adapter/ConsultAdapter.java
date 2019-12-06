@@ -33,6 +33,17 @@ public class ConsultAdapter extends RecyclerView.Adapter {
         }
     }
 
+    //第一步 定义接口
+    public interface OnItemClickListener {
+        void onClick(int position);
+    }
+
+    private OnItemClickListener listener;
+
+    //第二步， 写一个公共的方法
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,7 +52,7 @@ public class ConsultAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         ((MyViewholder) holder).consult_name.setText(list.get(position).source);
         ((MyViewholder) holder).consult_content.setText(list.get(position).title);
         // String[] images = circle.getImage().split(",");
@@ -51,6 +62,12 @@ public class ConsultAdapter extends RecyclerView.Adapter {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(list.get(position).id);
+            }
+        });
     }
 
     @Override

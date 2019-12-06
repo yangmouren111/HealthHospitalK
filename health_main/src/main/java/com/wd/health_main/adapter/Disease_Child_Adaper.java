@@ -31,6 +31,8 @@ public class Disease_Child_Adaper extends RecyclerView.Adapter {
     //第一步 定义接口
     public interface OnItemClickListener {
         void onClick(int position);
+
+        void onClick(String name);
     }
 
     private OnItemClickListener listener;
@@ -53,6 +55,7 @@ public class Disease_Child_Adaper extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
                listener.onClick(list.get(position).id);
+               listener.onClick(list.get(position).name);
             }
         });
     }

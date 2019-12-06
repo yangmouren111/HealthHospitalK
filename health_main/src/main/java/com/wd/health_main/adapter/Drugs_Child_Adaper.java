@@ -30,7 +30,19 @@ public class Drugs_Child_Adaper extends RecyclerView.Adapter {
             list.addAll(data);
         }
     }
+    //第一步 定义接口
+    public interface OnItemClickListener {
+        void onClick(int position);
 
+        void onClick(String name);
+    }
+
+    private OnItemClickListener listener;
+
+    //第二步， 写一个公共的方法
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,9 +51,16 @@ public class Drugs_Child_Adaper extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         ((MyViewholder) holder).drugs_child_name.setText(list.get(position).name);
         ((MyViewholder) holder).drugs_child_image.setImageURI(Uri.parse(list.get(position).picture));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(list.get(position).id);
+                listener.onClick(list.get(position).name);
+            }
+        });
     }
 
     @Override

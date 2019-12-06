@@ -11,7 +11,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.DiseaseActivity" />
-        <activity android:name=".activity.DiseaseKnowledgeActivity"></activity>
+        <activity android:name=".activity.DiseaseKnowledgeActivity" />
+        <activity android:name=".activity.DrugsKnowledgeActivity" />
+        <activity android:name=".activity.Consultation_DetailsActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,8 @@
 package com.wd.health_main.fragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +18,9 @@ import com.wd.common.core.WDFragment;
 import com.wd.common.core.exception.ApiException;
 import com.wd.health_main.R;
 import com.wd.health_main.R2;
+import com.wd.health_main.activity.Consultation_DetailsActivity;
 import com.wd.health_main.activity.DiseaseActivity;
+import com.wd.health_main.activity.DiseaseKnowledgeActivity;
 import com.wd.health_main.adapter.ConsultAdapter;
 import com.wd.health_main.adapter.ShowOutAdapter;
 import com.wd.health_main.adapter.Show_InquiryAdaper;
@@ -108,6 +112,14 @@ public class ShowFragment extends WDFragment {
         showInnerView.setLayoutManager(linearLayoutManager1);
         consultAdapter = new ConsultAdapter();
         showInnerView.setAdapter(consultAdapter);
+        consultAdapter.setOnItemClickListener(new ConsultAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                Intent intent = new Intent(getContext(), Consultation_DetailsActivity.class);
+                intent.putExtra("infoId", position);
+                startActivity(intent);
+            }
+        });
     }
 
     @OnClick({R2.id.show_banner, R2.id.show_disease, R2.id.show_drugs, R2.id.show_image})

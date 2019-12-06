@@ -1,6 +1,8 @@
 package com.wd.health_main.fragment.fragment_common;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 
 import com.wd.common.bean.CategroyBean;
 import com.wd.common.bean.DepartmentBean;
@@ -60,19 +62,31 @@ public class DiseaseFragment extends WDFragment {
         disease_parent_adaper.setOnItemClickListener(new Disease_Parent_Adaper.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-              categroyPresenter.reqeust(position);
+                categroyPresenter.reqeust(position);
             }
         });
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         fragDiseaseView.setLayoutManager(gridLayoutManager);
         disease_child_adaper = new Disease_Child_Adaper();
         fragDiseaseView.setAdapter(disease_child_adaper);
         disease_child_adaper.setOnItemClickListener(new Disease_Child_Adaper.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                Intent intent = new Intent(getContext(),DiseaseKnowledgeActivity.class);
-                intent.putExtra("id",position);
+                Intent intent = new Intent(getContext(), DiseaseKnowledgeActivity.class);
+                intent.putExtra("id", position);
                 startActivity(intent);
+                SharedPreferences sp = getContext().getSharedPreferences("Disease", Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putInt("Diseaseid", position);
+                edit.commit();
+            }
+
+            @Override
+            public void onClick(String name) {
+                SharedPreferences sp = getContext().getSharedPreferences("Disease", Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putString("Diseasename", name);
+                edit.commit();
             }
         });
     }

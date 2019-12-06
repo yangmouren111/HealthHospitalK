@@ -14,4 +14,6 @@ public class Banner {
     public String jumpUrl;
     public String rank;
     public String title;
+
+
 }

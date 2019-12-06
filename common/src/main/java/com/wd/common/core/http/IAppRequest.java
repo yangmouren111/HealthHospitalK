@@ -41,7 +41,7 @@ public interface IAppRequest {
 
     //咨询详情  http://172.17.8.100/health/share/information/v1/findInformation
     @GET("health/share/information/v1/findInformation")
-    Observable<Result<List<InformaBean>>> findInformation(@Header("userId") String userId,
+    Observable<Result<InformaBean>> findInformation(@Header("userId") String userId,
                                                           @Header("sessionId") String sessionId,
                                                           @Query("infoId") int infoId);
 
