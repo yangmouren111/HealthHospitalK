@@ -1,28 +1,30 @@
 package com.wd.health_main.adapter;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LevelListDrawable;
 import android.text.Html;
-import android.util.Log;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.wd.common.bean.FormaBean;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.wd.common.bean.InformaBean;
 import com.wd.common.util.DateUtils;
 import com.wd.health_main.R;
-import com.wd.health_main.activity.Consultation_DetailsActivity;
-import com.wd.health_main.core.HtmlUtils;
 
+import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,7 +52,7 @@ public class Consultation_DetailsAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
         ((MyViewholder) holder).condet_title.setText(list.get(position).title);
         ((MyViewholder) holder).condet_name.setText(list.get(position).source);
         try {
@@ -59,10 +61,26 @@ public class Consultation_DetailsAdapter extends RecyclerView.Adapter {
             e.printStackTrace();
         }
 
+        Html.ImageGetter imgGetter = new Html.ImageGetter() {
+            public Drawable getDrawable(String source) {
+                Drawable drawable = null;
+                URL url;
+                try {
+                    url = new URL(source);
+                    drawable = Drawable.createFromStream(url.openStream(), "");  //获取网路图片
+                } catch (Exception e) {
+                    return null;
+                }
+                drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable
+                        .getIntrinsicHeight());
+                return drawable;
+            }
+        };
 
-       ((MyViewholder) holder).condet_context.setText(Html.fromHtml(list.get(position).content));
 
-     }
+        ((MyViewholder) holder).condet_context.setText(Html.fromHtml(list.get(position).content,imgGetter,null));
+    }
+
 
 
     @Override
