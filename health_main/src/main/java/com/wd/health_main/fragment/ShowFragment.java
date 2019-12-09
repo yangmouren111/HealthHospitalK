@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.stx.xhb.xbanner.XBanner;
 import com.wd.common.bean.Banner;
 import com.wd.common.bean.DepartmentBean;
 import com.wd.common.bean.FormaBean;
@@ -48,7 +50,7 @@ import butterknife.OnClick;
 public class ShowFragment extends WDFragment {
 
     @BindView(R2.id.show_banner)
-    MZBannerView showBanner;
+    XBanner showBanner;
     @BindView(R2.id.show_disease)
     ImageView showDisease;
     @BindView(R2.id.show_drugs)
@@ -134,35 +136,19 @@ public class ShowFragment extends WDFragment {
         }
     }
 
-    class BannerViewHolder implements MZViewHolder<Banner> {
-        private SimpleDraweeView mImageView;
-
-        @Override
-        public View createView(Context context) {
-            // 返回页面布局
-            View view = LayoutInflater.from(context).inflate(R.layout.layout_banner, null);
-            mImageView = view.findViewById(R.id.banner_image);
-            return view;
-        }
-
-        @Override
-        public void onBind(Context context, int position, Banner data) {
-            // 数据绑定
-            mImageView.setImageURI(Uri.parse(data.imageUrl));
-        }
-    }
-
     private class banner implements DataCall<List<Banner>> {
         @Override
-        public void success(List<Banner> data, Object... args) {
-            showBanner.setIndicatorVisible(false);
-            showBanner.setPages(data, new MZHolderCreator<BannerViewHolder>() {
+        public void success(final List<Banner> data, Object... args) {
+
+            showBanner.setData(data, null);
+            showBanner.setmAdapter(new XBanner.XBannerAdapter() {
                 @Override
-                public BannerViewHolder createViewHolder() {
-                    return new BannerViewHolder();
+                public void loadBanner(XBanner banner, View view, int position) {
+                    Glide.with(getActivity()).load(data.get(position).imageUrl).into((ImageView) view);
+                    banner.setmAutoPalyTime(3000);
+                    banner.startAutoPlay();
                 }
             });
-            showBanner.start();
         }
 
         @Override

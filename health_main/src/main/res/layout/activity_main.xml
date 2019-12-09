@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -16,12 +14,13 @@
         android:id="@+id/main_group"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/the_bottom_bar"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/main_btn_home"
-            android:layout_width="30dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
@@ -30,14 +29,15 @@
         <RadioButton
             android:id="@+id/main_btn_cicle"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/dp_48"
             android:layout_weight="1"
             android:button="@null"
+            android:layout_marginBottom="@dimen/dp_150"
             android:drawableTop="@drawable/common_tab_circle_n"></RadioButton>
 
         <RadioButton
             android:id="@+id/main_btn_video"
-            android:layout_width="30dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"

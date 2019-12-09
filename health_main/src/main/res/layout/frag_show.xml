@@ -22,11 +22,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_200">
 
-                    <com.zhouwei.mzbanner.MZBannerView
+                    <com.stx.xhb.xbanner.XBanner
                         android:id="@+id/show_banner"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/dp_20"></com.zhouwei.mzbanner.MZBannerView>
+                        android:layout_height="@dimen/dp_200"
+                        app:canLoop="true"
+                        app:open_mz_mode="true"
+                        ></com.stx.xhb.xbanner.XBanner>
 
                     <ImageView
                         android:layout_width="@dimen/dp_32"
@@ -47,7 +49,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_40"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="@android:color/white"
+                    >
 
                     <ImageView
                         android:layout_width="@dimen/dp_3"
@@ -78,7 +82,9 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -95,6 +101,7 @@
                             android:layout_marginLeft="@dimen/dp_10"
                             android:layout_marginTop="@dimen/dp_38"
                             android:background="@drawable/common_disease" />
+                    </androidx.cardview.widget.CardView>
                     </RelativeLayout>
 
                     <View
@@ -104,18 +111,22 @@
                         android:background="#F2F2F2" />
 
                     <RelativeLayout
+                        android:layout_marginLeft="@dimen/dp_183"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginTop="@dimen/dp_10"
-                            android:layout_marginEnd="@dimen/dp_109"
-                            android:text="常用药品"
-                            android:textSize="@dimen/sp_14"
-                            android:textStyle="bold" />
+                            <TextView
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginTop="@dimen/dp_10"
+                                android:text="常用药品"
+                                android:textSize="@dimen/sp_14"
+                                android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/show_drugs"
@@ -125,6 +136,7 @@
                             android:layout_marginTop="@dimen/dp_38"
                             android:layout_marginRight="@dimen/dp_10"
                             android:background="@drawable/common_drugs" />
+                        </androidx.cardview.widget.CardView>
                     </RelativeLayout>
 
                     <View
@@ -135,7 +147,7 @@
                 </RelativeLayout>
 
                 <LinearLayout
-
+                    android:background="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_40"
                     android:orientation="horizontal">
@@ -165,20 +177,21 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:background="@android:color/white"
                   >
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/show_recyvle_view"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    ></androidx.recyclerview.widget.RecyclerView>
                 </RelativeLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_4"
-                    android:layout_marginTop="@dimen/dp_10"
                     android:background="#F2F2F2" />
                 <LinearLayout
-
+                    android:background="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_40"
                     android:orientation="horizontal">
@@ -217,7 +230,7 @@
                     android:background="#F2F2F2" />
 
                 <LinearLayout
-
+                    android:background="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_40"
                     android:orientation="horizontal">
