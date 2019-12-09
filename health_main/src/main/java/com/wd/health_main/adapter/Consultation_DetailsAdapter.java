@@ -5,11 +5,17 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LevelListDrawable;
+import android.net.http.SslError;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -60,29 +66,24 @@ public class Consultation_DetailsAdapter extends RecyclerView.Adapter {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        ((MyViewholder) holder).condet_context.getSettings(). setJavaScriptEnabled(true);
 
-        Html.ImageGetter imgGetter = new Html.ImageGetter() {
-            public Drawable getDrawable(String source) {
-                Drawable drawable = null;
-                URL url;
-                try {
-                    url = new URL(source);
-                    drawable = Drawable.createFromStream(url.openStream(), "");  //获取网路图片
-                } catch (Exception e) {
-                    return null;
-                }
-                drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable
-                        .getIntrinsicHeight());
-                return drawable;
+
+        ((MyViewholder) holder).condet_context.setWebViewClient(new WebViewClient(){
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                super.onReceivedSslError(view, handler, error);
+                handler.proceed();
             }
-        };
+        });
+
+            //设置图片显示宽度100% 高度自适应
+        String varjs = "<script type='text/javascript'> \nwindow.onload = function()\n{var $img = document.getElementsByTagName('img');for(var p in  $img){$img[p].style.width = '100%'; $img[p].style.height ='auto'}}</script>";
+        ((MyViewholder) holder).condet_context.loadData(varjs+list.get(position).content, "text/html", "UTF-8");
 
 
-        ((MyViewholder) holder).condet_context.setText(Html.fromHtml(list.get(position).content,imgGetter,null));
     }
-
-
-
     @Override
     public int getItemCount() {
         return list.size();
@@ -90,7 +91,8 @@ public class Consultation_DetailsAdapter extends RecyclerView.Adapter {
 
     public class MyViewholder extends RecyclerView.ViewHolder {
 
-        TextView condet_title, condet_name, condet_time, condet_context;
+        TextView condet_title, condet_name, condet_time;
+        WebView condet_context;
 
         public MyViewholder(@NonNull View itemView) {
             super(itemView);

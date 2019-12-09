@@ -107,6 +107,8 @@ public class ShowFragment extends WDFragment {
             @Override
             public void onClick(int position) {
                 formationListPresenter.reqeust(position, 1, 5);
+                showOutAdapter.setmPosition(position);
+                showOutAdapter.notifyDataSetChanged();
             }
         });
 

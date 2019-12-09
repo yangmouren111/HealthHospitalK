@@ -1,5 +1,6 @@
 package com.wd.health_main.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class ShowOutAdapter extends RecyclerView.Adapter {
             list.addAll(data);
         }
     }
+
     //第一步 定义接口
     public interface OnItemClickListener {
         void onClick(int position);
@@ -39,6 +41,7 @@ public class ShowOutAdapter extends RecyclerView.Adapter {
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -48,20 +51,30 @@ public class ShowOutAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
-     MyViewholder myViewholder  = (MyViewholder) holder;
-     myViewholder.show_name_adapter.setText(list.get(position).name);
-     myViewholder.itemView.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-             listener.onClick(list.get(position).id);
-         }
-     });
+        MyViewholder myViewholder = (MyViewholder) holder;
+        myViewholder.show_name_adapter.setText(list.get(position).name);
+        myViewholder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(list.get(position).id);
+                listener.onClick(position);
+                notifyDataSetChanged();
+            }
+        });
+        if (position == getmPosition()) {
+            myViewholder.show_name_adapter.setTextColor(holder.itemView.getResources().getColor(R.color.showoutadapter_color));
+        }else{
+//            否则的话就全白色初始化背景
+            myViewholder.show_name_adapter.setTextColor(Color.BLACK);
+
+        }
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
+
     public class MyViewholder extends RecyclerView.ViewHolder {
 
         TextView show_name_adapter;
@@ -72,4 +85,15 @@ public class ShowOutAdapter extends RecyclerView.Adapter {
 
         }
     }
+
+    private int mPosition;
+
+    public int getmPosition() {
+        return mPosition;
+    }
+
+    public void setmPosition(int mPosition) {
+        this.mPosition = mPosition;
+    }
+
 }

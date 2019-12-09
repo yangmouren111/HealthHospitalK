@@ -28,8 +28,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/dp_122"
         android:layout_marginBottom="@dimen/dp_10"
-        android:text="1111111111111111111"
-        android:textStyle="bold" />
+        android:text="1111111111111111111" />
 
     <TextView
         android:id="@+id/consult_time"
@@ -40,5 +39,5 @@
         android:layout_marginRight="@dimen/dp_12"
         android:layout_marginBottom="@dimen/dp_10"
         android:text="11111"
-        android:textStyle="bold" />
+       />
 </RelativeLayout>

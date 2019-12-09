@@ -65,6 +65,8 @@ public class DrugsFragment extends WDFragment {
             @Override
             public void onClick(int position) {
                 drugsKonwPresenter.reqeust(position, 1, 5);
+                drugs_parent_adaper.setmPosition(position);
+                drugs_parent_adaper.notifyDataSetChanged();
             }
         });
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);

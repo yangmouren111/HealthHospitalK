@@ -1,5 +1,7 @@
 package com.wd.common.bean;
 
+import java.util.List;
+
 /**
  * Time:  2019-12-05
  * Author:  杨世博

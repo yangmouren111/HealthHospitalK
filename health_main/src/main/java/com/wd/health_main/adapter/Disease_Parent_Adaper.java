@@ -1,5 +1,6 @@
 package com.wd.health_main.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,8 +57,18 @@ public class Disease_Parent_Adaper extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
                 listener.onClick(list.get(position).id);
+                listener.onClick(position);
+                notifyDataSetChanged();
             }
         });
+        if (position == getmPosition()) {
+            holder.itemView.setBackgroundColor(Color.WHITE);
+            ((MyViewholder) holder).parent_view.setVisibility(View.VISIBLE);
+        }else{
+//            否则的话就全白色初始化背景
+            holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.rec_color));
+            ((MyViewholder) holder).parent_view.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -68,11 +79,22 @@ public class Disease_Parent_Adaper extends RecyclerView.Adapter {
     public class MyViewholder extends RecyclerView.ViewHolder {
 
         TextView parent_name;
+        View parent_view;
 
         public MyViewholder(@NonNull View itemView) {
             super(itemView);
             parent_name = itemView.findViewById(R.id.parent_name);
+            parent_view = itemView.findViewById(R.id.parent_view);
 
         }
+    }
+    private  int mPosition;
+
+    public int getmPosition() {
+        return mPosition;
+    }
+
+    public void setmPosition(int mPosition) {
+        this.mPosition = mPosition;
     }
 }

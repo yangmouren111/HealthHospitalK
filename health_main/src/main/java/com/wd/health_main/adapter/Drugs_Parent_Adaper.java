@@ -1,8 +1,10 @@
 package com.wd.health_main.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.wd.common.bean.DepartmentBean;
@@ -55,8 +57,18 @@ public class Drugs_Parent_Adaper extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
                 listener.onClick(list.get(position).id);
+                listener.onClick(position);
+                notifyDataSetChanged();
             }
         });
+        if (position == getmPosition()) {
+            holder.itemView.setBackgroundColor(Color.WHITE);
+            ((MyViewholder) holder).drugs_parent_view.setVisibility(View.VISIBLE);
+        }else{
+//            否则的话就全白色初始化背景
+            holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.rec_color));
+            ((MyViewholder) holder).drugs_parent_view.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -67,11 +79,21 @@ public class Drugs_Parent_Adaper extends RecyclerView.Adapter {
     public class MyViewholder extends RecyclerView.ViewHolder {
 
         TextView drugs_parent_name;
-
+       View drugs_parent_view;
         public MyViewholder(@NonNull View itemView) {
             super(itemView);
             drugs_parent_name = itemView.findViewById(R.id.drugs_parent_name);
+            drugs_parent_view = itemView.findViewById(R.id.drugs_parent_view);
 
         }
+    }
+    private  int mPosition;
+
+    public int getmPosition() {
+        return mPosition;
+    }
+
+    public void setmPosition(int mPosition) {
+        this.mPosition = mPosition;
     }
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.wd.common.bean.FormaBean;
 import com.wd.common.util.DateUtils;
 import com.wd.health_main.R;
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class ConsultAdapter extends RecyclerView.Adapter {
     private List<FormaBean> list = new ArrayList<>();
+    private FormaBean formaBean;
 
     public void addAll(List<FormaBean> data) {
         if (data != null) {
@@ -44,23 +46,47 @@ public class ConsultAdapter extends RecyclerView.Adapter {
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_consult, parent, false);
-        return new MyViewholder(view);
+        if (viewType == 0) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_consult, parent, false);
+            return new MyViewholder(view);
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_consult_inner, parent, false);
+            return new ThreePicViewHolder(view);
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
-        ((MyViewholder) holder).consult_name.setText(list.get(position).source);
-        ((MyViewholder) holder).consult_content.setText(list.get(position).title);
-        // String[] images = circle.getImage().split(",");
-        ((MyViewholder) holder).consult_image.setImageURI(Uri.parse(list.get(position).thumbnail));
-        try {
-            ((MyViewholder) holder).consult_time.setText(DateUtils.dateFormat(new Date(list.get(position).releaseTime), DateUtils.MINUTE_PATTERN));
-        } catch (ParseException e) {
-            e.printStackTrace();
+        int viewType = holder.getItemViewType();
+        if (viewType == 0) {
+            ((MyViewholder) holder).consult_name.setText(list.get(position).source);
+            ((MyViewholder) holder).consult_content.setText(list.get(position).title);
+            // String[] images = circle.getImage().split(";");
+            ((MyViewholder) holder).consult_image.setImageURI(Uri.parse(list.get(position).thumbnail));
+            try {
+                ((MyViewholder) holder).consult_time.setText(DateUtils.dateFormat(new Date(list.get(position).releaseTime), DateUtils.MINUTE_PATTERN));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        } else {
+            ThreePicViewHolder viewHolder = (ThreePicViewHolder) holder;
+            FormaBean news = list.get(position);
+            viewHolder.tvContent.setText(news.title);
+            viewHolder.tvSource.setText(news.source);
+            try {
+                viewHolder.tvTime.setText(DateUtils.dateFormat(new Date(list.get(position).releaseTime), DateUtils.MINUTE_PATTERN));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String image = list.get(position).thumbnail;
+            String[] split = image.split(";");
+            Glide.with(holder.itemView.getContext()).load(split[0]).into(viewHolder.ivPic1);
+            Glide.with(holder.itemView.getContext()).load(split[1]).into(viewHolder.ivPic2);
+            Glide.with(holder.itemView.getContext()).load(split[2]).into(viewHolder.ivPic3);
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +99,16 @@ public class ConsultAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        formaBean = list.get(position);
+        String image = list.get(position).thumbnail;
+        String[] split = image.split(";");
+        boolean isThreePic = split.length == 3;
+        int viewType = isThreePic ? 1 : 0;
+        return viewType;
     }
 
     public void clear() {
@@ -91,4 +127,24 @@ public class ConsultAdapter extends RecyclerView.Adapter {
             consult_time = itemView.findViewById(R.id.consult_time);
         }
     }
+
+    static class ThreePicViewHolder extends RecyclerView.ViewHolder {
+        ImageView ivPic1;
+        ImageView ivPic2;
+        ImageView ivPic3;
+        TextView tvContent;
+        TextView tvSource;
+        TextView tvTime;
+
+        public ThreePicViewHolder(View view) {
+            super(view);
+            ivPic1 = view.findViewById(R.id.iv_pic1);
+            ivPic2 = view.findViewById(R.id.iv_pic2);
+            ivPic3 = view.findViewById(R.id.iv_pic3);
+            tvContent = view.findViewById(R.id.tv_content);
+            tvSource = view.findViewById(R.id.tv_source);
+            tvTime = view.findViewById(R.id.tv_time);
+        }
+    }
+
 }

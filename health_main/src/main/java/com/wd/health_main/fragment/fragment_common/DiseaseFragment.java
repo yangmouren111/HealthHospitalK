@@ -63,6 +63,8 @@ public class DiseaseFragment extends WDFragment {
             @Override
             public void onClick(int position) {
                 categroyPresenter.reqeust(position);
+                disease_parent_adaper.setmPosition(position);
+                disease_parent_adaper.notifyDataSetChanged();
             }
         });
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);

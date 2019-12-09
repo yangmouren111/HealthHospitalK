@@ -4,12 +4,17 @@
 
     <application>
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".activity.DiseaseActivity" />
         <activity android:name=".activity.DiseaseKnowledgeActivity" />
         <activity android:name=".activity.DrugsKnowledgeActivity" />
-        <activity android:name=".activity.Consultation_DetailsActivity"></activity>
+        <activity android:name=".activity.Consultation_DetailsActivity" />
+        <activity android:name=".activity.WriteSickCircleActivity"></activity>
     </application>
 
 </manifest>
