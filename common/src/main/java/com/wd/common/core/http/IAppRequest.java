@@ -57,12 +57,12 @@ public interface IAppRequest {
                                                             @Query("page") int page,
                                                             @Query("count") int count);
     //查询健康讲堂类目
-    @GET("user/video/v1/findVideoCategoryList")
+    @GET("health/user/video/v1/findVideoCategoryList")
     Observable<Result<List<VideoGroup>>> findVideoCategoryList();
 
 
     //根据视频类目查询视频列表
-    @GET("user/video/v1/findVideoVoList")
+    @GET("health/user/video/v1/findVideoVoList")
     Observable<Result<List<VideoVo>>> findVideoVoList(@Header("userId") int userId,
                                                       @Header("sessionId") String sessionId,
                                                       @Query("categoryId") int categoryId,
@@ -72,7 +72,7 @@ public interface IAppRequest {
 
 
     //健康课堂视频购买
-    @POST("user/video/verify/v1/videoBuy")
+    @POST("health/user/video/verify/v1/videoBuy")
     @FormUrlEncoded
     Observable<Result> videoBuy(@Header("userId") int userId,
                                                       @Header("sessionId") String sessionId,
@@ -81,7 +81,7 @@ public interface IAppRequest {
     );
 
     //发表视频评论（弹幕）
-    @POST("user/video/verify/v1/addVideoComment")
+    @POST("health/user/video/verify/v1/addVideoComment")
     @FormUrlEncoded
     Observable<Result> addVideoComment(@Header("userId") int userId,
                                                       @Header("sessionId") String sessionId,
@@ -89,7 +89,7 @@ public interface IAppRequest {
                                                       @Field("price") String price
     );
     //查询视频评论列表
-    @GET("user/video/v1/findVideoCommentList")
+    @GET("health/user/video/v1/findVideoCommentList")
     Observable<Result<List<VideoComment>>> findVideoCommentList(@Query("videoId") int videoId);
 
 

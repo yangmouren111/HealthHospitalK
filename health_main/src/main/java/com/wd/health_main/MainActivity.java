@@ -17,6 +17,7 @@ import com.wd.health_main.activity.WriteSickCircleActivity;
 import com.wd.health_main.fragment.CircleFragment;
 import com.wd.health_main.fragment.ShowFragment;
 import com.wd.health_main.fragment.VideoFragment;
+import com.wd.health_vedio.view.activity.VideoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,9 +53,10 @@ public class MainActivity extends AppCompatActivity {
     FrameLayout vp;
     private ShowFragment showFragment;
     private CircleFragment circleFragment;
-    private VideoFragment videoFragment;
+
     private List<Fragment> list = new ArrayList<>();
     private long mExitTime;
+    private VideoActivity videoActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,18 +81,18 @@ public class MainActivity extends AppCompatActivity {
 
         showFragment = new ShowFragment();
         circleFragment = new CircleFragment();
-        videoFragment = new VideoFragment();
+        videoActivity = new VideoActivity();
         list.add(showFragment);
         list.add(circleFragment);
-        list.add(videoFragment);
+        list.add(videoActivity);
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.vp, showFragment)
                 .add(R.id.vp, circleFragment)
-                .add(R.id.vp, videoFragment)
+                .add(R.id.vp, videoActivity)
                 .show(showFragment)
                 .hide(circleFragment)
-                .hide(videoFragment)
+                .hide(videoActivity)
                 .commit();
 
     }
@@ -114,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                     .beginTransaction()
                     .show(showFragment)
                     .hide(circleFragment)
-                    .hide(videoFragment)
+                    .hide(videoActivity)
                     .commit();
 
         } else if (i == R.id.movie_lin) {
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             rbMovieWei.setVisibility(View.GONE);
             getSupportFragmentManager()
                     .beginTransaction()
-                    .show(videoFragment)
+                    .show(videoActivity)
                     .hide(circleFragment)
                     .hide(showFragment)
                     .commit();
@@ -135,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager()
                     .beginTransaction()
                     .show(circleFragment)
-                    .hide(videoFragment)
+                    .hide(videoActivity)
                     .hide(showFragment)
                     .commit();
 
