@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="5dip" />
+            <gradient
+                android:startColor="@color/video_seekbar_start"
+                android:centerColor="@color/video_seekbar_start"
+                android:endColor="@color/video_seekbar_start"
+                android:angle="270"
+                />
+        </shape>
+    </item>
+
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="5dip" />
+                <gradient
+                    android:startColor="@color/video_seekbar_end"
+                    android:centerColor="@color/video_seekbar_end"
+                    android:endColor="@color/video_seekbar_end"
+                    android:angle="0"
+                    />
+            </shape>
+        </clip>
+    </item>
+
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="5dip" />
+                <gradient
+                    android:startColor="@color/video_seekbar_end"
+                    android:centerColor="@color/video_seekbar_end"
+                    android:endColor="@color/video_seekbar_end"
+                    android:angle="270"
+                    />
+            </shape>
+        </clip>
+    </item>
+
+
+
+</layer-list>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:id="@+id/video_group_layout"
+    >
+
+    <RadioButton
+        android:id="@+id/video_group_text"
+        android:text="啊是大"
+        android:gravity="center"
+        android:button="@null"
+        android:paddingHorizontal="@dimen/dp_15"
+        android:textColor="@drawable/video_title"
+        android:textSize="@dimen/sp_14"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
