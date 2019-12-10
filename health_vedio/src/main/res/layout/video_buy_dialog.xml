@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@drawable/my_videoby_dialog"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/dialo_title"
+        android:text="本次花费500H币！"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginVertical="@dimen/dp_30"
+        android:layout_marginHorizontal="@dimen/dp_50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/dialo_back"
+            android:text="取消"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@android:color/white"
+            android:background="#9A9A9A"
+            android:layout_height="match_parent" />
+        <Button
+            android:id="@+id/dialo_buy"
+            android:text="立即购买"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@android:color/white"
+            android:background="#3288EA"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,5 +1,9 @@
 package com.wd.common.core.http;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import com.wd.common.core.WDPresenter;
 
 import java.util.concurrent.TimeUnit;
@@ -57,18 +61,16 @@ public class NetworkManager {
 
         app_retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
-//                .baseUrl("http://169.254.101.220:8080/")//base_url:http+域名
-//                .baseUrl("http://172.17.8.100/small/")//base_url:http+域名
-                .baseUrl("http://mobile.bwstudent.com/small/")//base_url:http+域名
+//                .baseUrl("http://mobile.bwstudent.com/health/")//base_url:http+域名
+                .baseUrl("http://172.17.8.100/health/")//base_url:http+域名
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//使用Rxjava对回调数据进行处理
                 .addConverterFactory(GsonConverterFactory.create())//响应结果的解析器，包含gson，xml，protobuf
                 .build();
 
         baidu_retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
-//                .baseUrl("http://169.254.101.220:8080/")//base_url:http+域名
-//                .baseUrl("http://172.17.8.100/small/")//base_url:http+域名
-                .baseUrl("http://mobile.bwstudent.com/small/")//base_url:http+域名
+//                .baseUrl("http://mobile.bwstudent.com/health/")//base_url:http+域名
+                .baseUrl("http://172.17.8.100/health/")//base_url:http+域名
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//使用Rxjava对回调数据进行处理
                 .addConverterFactory(GsonConverterFactory.create())//响应结果的解析器，包含gson，xml，protobuf
                 .build();
@@ -79,6 +81,18 @@ public class NetworkManager {
             return baidu_retrofit.create(service);
         }
         return app_retrofit.create(service);
+    }
+
+
+    public static boolean isNetWork(Context context){
+        if (context != null) {
+            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo info = cm.getActiveNetworkInfo();
+            if (info != null) {
+                return info.isAvailable();
+            }
+        }
+        return false;
     }
 
 }

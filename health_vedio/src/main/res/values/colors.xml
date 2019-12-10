@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="commdity_text_color">#666666</color>
+    <color name="commdity_price_color">#ff0000</color>
+    <color name="video_title_checked_true">#3E8FEB</color>
+    <color name="video_title_checked_flase">#9A9A9A</color>
+    <color name="video_seekbar_end">#ADACAE</color>
+    <color name="video_seekbar_start">#CAC6CA</color>
+    <color name="colorWrite">#FFFFFF</color>
+</resources>

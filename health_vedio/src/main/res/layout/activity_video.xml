@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wd.health_vedio.view.activity.VideoActivity">
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/video_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <VideoView
+        android:id="@+id/line_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/white" />
+
+    <com.kd.easybarrage.BarrageView
+        android:id="@+id/video_danmu"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:allow_repeat="true"
+        app:line_height="20dp"
+        app:max_text_size="14"
+        app:min_text_size="14"
+        app:random_color="false"
+        app:size="200"
+        />
+
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/video_group_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_35"
+        android:layout_marginTop="-50dp"
+        android:background="@android:color/white">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/video_drop_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_15"
+        app:srcCompat="@mipmap/drop_down" />
+
+
+</RelativeLayout>
