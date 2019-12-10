@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.wd.health_vedio.view.iview.FullScreenVideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:focusable="false" />
+
+    <ImageView
+        android:id="@+id/img_thumb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:focusable="false"
+        android:scaleType="centerCrop"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_180"
+        android:layout_marginRight="@dimen/dp_20"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/video_buy"
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_gravity="center"
+            android:src="@mipmap/common_button_collection_large_n"
+            android:gravity="center" />
+
+        <ImageView
+            android:id="@+id/video_danmu_hide"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_3"
+            android:src="@mipmap/common_icon_open_live_commenting_n"
+            android:gravity="center" />
+
+
+
+        <ImageView
+            android:id="@+id/video_danmu_gone"
+            android:visibility="gone"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_3"
+            android:src="@mipmap/common_icon_close_live_commenting_n"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"
+            android:layout_marginTop="@dimen/dp_20"
+            android:textSize="@dimen/sp_10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="3万人  已购买"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_play"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        app:srcCompat="@mipmap/common_icon_time_out_n" />
+
+
+    <SeekBar
+        android:id="@+id/video_mySeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_2"
+        android:thumb="@null"
+        android:progressDrawable="@drawable/seekbar_style"
+        android:progress="500"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_25"
+        android:maxHeight="@dimen/dp_2"
+        android:minHeight="@dimen/dp_2" />
+
+    <TextView
+        android:id="@+id/video_videoConnet"
+        android:layout_above="@id/video_mySeekBar"
+        android:textSize="@dimen/sp_12"
+        android:gravity="left"
+        android:layout_marginHorizontal="@dimen/dp_15"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:textColor="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/video_videoName"
+        android:layout_above="@id/video_videoConnet"
+        android:textSize="@dimen/dp_16"
+        android:gravity="left"
+        android:layout_marginHorizontal="@dimen/dp_15"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:textColor="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
