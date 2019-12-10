@@ -3,13 +3,11 @@ package com.wd.health_main.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.stx.xhb.xbanner.XBanner;
 import com.wd.common.bean.Banner;
 import com.wd.common.bean.DepartmentBean;
@@ -22,7 +20,8 @@ import com.wd.health_main.R;
 import com.wd.health_main.R2;
 import com.wd.health_main.activity.Consultation_DetailsActivity;
 import com.wd.health_main.activity.DiseaseActivity;
-import com.wd.health_main.activity.DiseaseKnowledgeActivity;
+import com.wd.health_main.activity.MoreActivity;
+import com.wd.health_main.activity.SearchActivity;
 import com.wd.health_main.adapter.ConsultAdapter;
 import com.wd.health_main.adapter.ShowOutAdapter;
 import com.wd.health_main.adapter.Show_InquiryAdaper;
@@ -30,9 +29,7 @@ import com.wd.health_main.presenter.BannerPresenter;
 import com.wd.health_main.presenter.DepartmentPresenter;
 import com.wd.health_main.presenter.FormationListPresenter;
 import com.wd.health_main.presenter.PlateListPresenter;
-import com.zhouwei.mzbanner.MZBannerView;
-import com.zhouwei.mzbanner.holder.MZHolderCreator;
-import com.zhouwei.mzbanner.holder.MZViewHolder;
+import com.wd.health_main.seach.KylinSearchView_Out;
 
 import java.util.List;
 
@@ -63,6 +60,10 @@ public class ShowFragment extends WDFragment {
     RecyclerView showOutView;
     @BindView(R2.id.show_inner_view)
     RecyclerView showInnerView;
+    @BindView(R2.id.kylin_out)
+    KylinSearchView_Out kylinOut;
+    @BindView(R2.id.show_more)
+    TextView showMore;
 
     private FormationListPresenter formationListPresenter;
     private PlateListPresenter plateListPresenter;
@@ -109,6 +110,10 @@ public class ShowFragment extends WDFragment {
                 formationListPresenter.reqeust(position, 1, 5);
                 showOutAdapter.setmPosition(position);
                 showOutAdapter.notifyDataSetChanged();
+                SharedPreferences sp =getContext().getSharedPreferences("Show",Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putInt("moreid",position);
+                edit.commit();
             }
         });
 
@@ -126,7 +131,7 @@ public class ShowFragment extends WDFragment {
         });
     }
 
-    @OnClick({R2.id.show_banner, R2.id.show_disease, R2.id.show_drugs, R2.id.show_image})
+    @OnClick({R2.id.show_banner, R2.id.show_disease, R2.id.show_drugs, R2.id.show_image,R2.id.show_more})
     public void onViewClicked(View view) {
         int i = view.getId();
         if (i == R.id.show_banner) {
@@ -135,7 +140,14 @@ public class ShowFragment extends WDFragment {
         } else if (i == R.id.show_drugs) {
             intent(DiseaseActivity.class);
         } else if (i == R.id.show_image) {
+        }else if (i == R.id.show_more){
+          intent(MoreActivity.class);
         }
+    }
+
+    @OnClick(R2.id.kylin_out)
+    public void onViewClicked() {
+        intent(SearchActivity.class);
     }
 
     private class banner implements DataCall<List<Banner>> {

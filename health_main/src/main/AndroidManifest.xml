@@ -14,7 +14,9 @@
         <activity android:name=".activity.DiseaseKnowledgeActivity" />
         <activity android:name=".activity.DrugsKnowledgeActivity" />
         <activity android:name=".activity.Consultation_DetailsActivity" />
-        <activity android:name=".activity.WriteSickCircleActivity"></activity>
+        <activity android:name=".activity.WriteSickCircleActivity" />
+        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.MoreActivity"></activity>
     </application>
 
 </manifest>

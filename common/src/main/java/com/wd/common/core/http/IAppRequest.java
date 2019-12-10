@@ -7,9 +7,11 @@ import com.wd.common.bean.DrugsCateBean;
 import com.wd.common.bean.DrugsKonwBean;
 import com.wd.common.bean.DrugsledgeBean;
 import com.wd.common.bean.FormaBean;
+import com.wd.common.bean.HomePageSearch;
 import com.wd.common.bean.InformaBean;
 import com.wd.common.bean.KnowledgeBean;
 import com.wd.common.bean.PlateBean;
+import com.wd.common.bean.PopularSearch;
 import com.wd.common.bean.Result;
 
 import java.util.List;
@@ -70,4 +72,12 @@ public interface IAppRequest {
     //查询常见药品详情  http://172.17.8.100/health/share/knowledgeBase/v1/findDrugsKnowledge
     @GET("health/share/knowledgeBase/v1/findDrugsKnowledge")
     Observable<Result<DrugsledgeBean>> findDrugsKnowledge(@Query("id") int id);
+
+    //热门搜索 http://172.17.8.100/health/share/v1/popularSearch
+    @GET("health/share/v1/popularSearch")
+    Observable<Result<List<PopularSearch>>> popularSearch();
+
+    //首页搜索 http://172.17.8.100/health/share/v1/homePageSearch
+    @GET("health/share/v1/homePageSearch")
+    Observable<Result<HomePageSearch>> homePageSearch(@Query("keyWord") String keyWord);
 }

@@ -18,40 +18,48 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_200">
-
-                    <com.stx.xhb.xbanner.XBanner
-                        android:id="@+id/show_banner"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_200"
-                        app:canLoop="true"
-                        app:open_mz_mode="true"
-                        ></com.stx.xhb.xbanner.XBanner>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_32"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/dp_32"
                         android:layout_height="@dimen/dp_32"
                         android:layout_marginLeft="@dimen/dp_12"
-                        android:layout_marginTop="@dimen/dp_32"
                         android:background="@drawable/wallet_icon_clock_n" />
+
+                    <com.wd.health_main.seach.KylinSearchView_Out
+                        android:id="@+id/kylin_out"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_10"
+                        ></com.wd.health_main.seach.KylinSearchView_Out>
 
                     <ImageView
                         android:layout_width="@dimen/dp_32"
                         android:layout_height="@dimen/dp_32"
                         android:layout_alignParentRight="true"
-                        android:layout_marginTop="@dimen/dp_32"
                         android:layout_marginRight="@dimen/dp_12"
                         android:background="@drawable/common_nav_message_white_n" />
-                </RelativeLayout>
+                </LinearLayout>
+
+                <com.stx.xhb.xbanner.XBanner
+                    android:id="@+id/show_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_200"
+                    android:layout_marginTop="10dp"
+                    app:canLoop="true"
+                    app:open_mz_mode="true"></com.stx.xhb.xbanner.XBanner>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_40"
-                    android:orientation="horizontal"
                     android:background="@android:color/white"
-                    >
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/dp_3"
@@ -82,26 +90,28 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/dp_10"
-                            android:layout_marginTop="@dimen/dp_10"
-                            android:text="常见病症"
-                            android:textSize="@dimen/sp_14"
-                            android:textStyle="bold" />
 
-                        <ImageView
-                            android:id="@+id/show_disease"
-                            android:layout_width="@dimen/dp_157"
-                            android:layout_height="@dimen/dp_157"
-                            android:layout_marginLeft="@dimen/dp_10"
-                            android:layout_marginTop="@dimen/dp_38"
-                            android:background="@drawable/common_disease" />
-                    </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:layout_marginTop="@dimen/dp_10"
+                                android:text="常见病症"
+                                android:textSize="@dimen/sp_14"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/show_disease"
+                                android:layout_width="@dimen/dp_157"
+                                android:layout_height="@dimen/dp_157"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:layout_marginTop="@dimen/dp_38"
+                                android:background="@drawable/common_disease" />
+                        </androidx.cardview.widget.CardView>
                     </RelativeLayout>
 
                     <View
@@ -111,31 +121,32 @@
                         android:background="#F2F2F2" />
 
                     <RelativeLayout
-                        android:layout_marginLeft="@dimen/dp_183"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_183">
+
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:layout_marginLeft="@dimen/dp_10"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
+                                android:layout_marginLeft="@dimen/dp_10"
                                 android:layout_marginTop="@dimen/dp_10"
                                 android:text="常用药品"
                                 android:textSize="@dimen/sp_14"
                                 android:textStyle="bold" />
 
-                        <ImageView
-                            android:id="@+id/show_drugs"
-                            android:layout_width="@dimen/dp_157"
-                            android:layout_height="@dimen/dp_157"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginTop="@dimen/dp_38"
-                            android:layout_marginRight="@dimen/dp_10"
-                            android:background="@drawable/common_drugs" />
+                            <ImageView
+                                android:id="@+id/show_drugs"
+                                android:layout_width="@dimen/dp_157"
+                                android:layout_height="@dimen/dp_157"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="@dimen/dp_38"
+                                android:layout_marginRight="@dimen/dp_10"
+                                android:background="@drawable/common_drugs" />
                         </androidx.cardview.widget.CardView>
                     </RelativeLayout>
 
@@ -147,9 +158,9 @@
                 </RelativeLayout>
 
                 <LinearLayout
-                    android:background="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_40"
+                    android:background="@android:color/white"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -177,23 +188,24 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                  >
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/show_recyvle_view"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@android:color/white"
-    ></androidx.recyclerview.widget.RecyclerView>
+                    android:background="@android:color/white">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/show_recyvle_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"></androidx.recyclerview.widget.RecyclerView>
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_4"
                     android:background="#F2F2F2" />
+
                 <LinearLayout
-                    android:background="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_40"
+                    android:background="@android:color/white"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -230,9 +242,9 @@
                     android:background="#F2F2F2" />
 
                 <LinearLayout
-                    android:background="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_40"
+                    android:background="@android:color/white"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -263,10 +275,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_40"></androidx.recyclerview.widget.RecyclerView>
 
-               <androidx.recyclerview.widget.RecyclerView
-                   android:id="@+id/show_inner_view"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/show_inner_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+
+
+                    <TextView
+                        android:id="@+id/show_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                       android:layout_gravity="right"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:text="查看更多 >>"
+                        android:textColor="#3087ea"
+                        android:textSize="@dimen/sp_12" />
 
             </LinearLayout>
 

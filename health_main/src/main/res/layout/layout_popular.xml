@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/dp_26">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        >
+    <TextView
+        android:id="@+id/popular_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="#333333"
+        android:text="11111"
+        android:background="#F2F2F2"
+        android:textStyle="bold"
+        />
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
