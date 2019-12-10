@@ -56,6 +56,7 @@ public interface IAppRequest {
     Observable<Result<List<FormaBean>>> findInformationList(@Query("plateId") int plateId,
                                                             @Query("page") int page,
                                                             @Query("count") int count);
+
     //查询健康讲堂类目
     @GET("health/user/video/v1/findVideoCategoryList")
     Observable<Result<List<VideoGroup>>> findVideoCategoryList();
@@ -75,19 +76,20 @@ public interface IAppRequest {
     @POST("health/user/video/verify/v1/videoBuy")
     @FormUrlEncoded
     Observable<Result> videoBuy(@Header("userId") int userId,
-                                                      @Header("sessionId") String sessionId,
-                                                      @Field("videoId") int videoId,
-                                                      @Field("price") int price
+                                @Header("sessionId") String sessionId,
+                                @Field("videoId") int videoId,
+                                @Field("price") int price
     );
 
     //发表视频评论（弹幕）
     @POST("health/user/video/verify/v1/addVideoComment")
     @FormUrlEncoded
     Observable<Result> addVideoComment(@Header("userId") int userId,
-                                                      @Header("sessionId") String sessionId,
-                                                      @Field("videoId") int videoId,
-                                                      @Field("price") String price
+                                       @Header("sessionId") String sessionId,
+                                       @Field("videoId") int videoId,
+                                       @Field("price") String price
     );
+
     //查询视频评论列表
     @GET("health/user/video/v1/findVideoCommentList")
     Observable<Result<List<VideoComment>>> findVideoCommentList(@Query("videoId") int videoId);
@@ -96,8 +98,8 @@ public interface IAppRequest {
     //咨询详情  http://172.17.8.100/health/share/information/v1/findInformation
     @GET("health/share/information/v1/findInformation")
     Observable<Result<InformaBean>> findInformation(@Header("userId") String userId,
-                                                          @Header("sessionId") String sessionId,
-                                                          @Query("infoId") int infoId);
+                                                    @Header("sessionId") String sessionId,
+                                                    @Query("infoId") int infoId);
 
     //  查询科室列表  http://172.17.8.100/health/share/knowledgeBase/v1/findDepartment
     @GET("health/share/knowledgeBase/v1/findDepartment")
@@ -132,4 +134,18 @@ public interface IAppRequest {
     //首页搜索 http://172.17.8.100/health/share/v1/homePageSearch
     @GET("health/share/v1/homePageSearch")
     Observable<Result<HomePageSearch>> homePageSearch(@Query("keyWord") String keyWord);
+
+    //收藏 ：http://172.17.8.100/health/user/verify/v1/addInfoCollection
+    @POST("health/user/verify/v1/addInfoCollection")
+    @FormUrlEncoded
+    Observable<Result> addInfoCollection(@Header("userId") String userId,
+                                         @Header("sessionId") String sessionId,
+                                         @Field("infoId") int infoId);
+
+    //取消收藏 http://172.17.8.100/health/user/verify/v1/cancelInfoCollection
+    @POST("health/user/verify/v1/cancelInfoCollection")
+    @FormUrlEncoded
+    Observable<Result> cancelInfoCollection(@Header("userId") String userId,
+                                            @Header("sessionId") String sessionId,
+                                            @Field("infoId") int infoId);
 }

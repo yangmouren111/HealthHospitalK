@@ -18,6 +18,7 @@ import com.wd.common.core.WDFragment;
 import com.wd.common.core.exception.ApiException;
 import com.wd.health_main.R;
 import com.wd.health_main.R2;
+import com.wd.health_main.activity.BannerActivity;
 import com.wd.health_main.activity.Consultation_DetailsActivity;
 import com.wd.health_main.activity.DiseaseActivity;
 import com.wd.health_main.activity.MoreActivity;
@@ -72,6 +73,7 @@ public class ShowFragment extends WDFragment {
     private Show_InquiryAdaper show_inquiryAdaper;
     private ShowOutAdapter showOutAdapter;
     private ConsultAdapter consultAdapter;
+    private int pos;
 
     @Override
     public String getPageName() {
@@ -105,17 +107,19 @@ public class ShowFragment extends WDFragment {
         showOutAdapter = new ShowOutAdapter();
         showOutView.setAdapter(showOutAdapter);
         showOutAdapter.setOnItemClickListener(new ShowOutAdapter.OnItemClickListener() {
+
             @Override
             public void onClick(int position) {
-                formationListPresenter.reqeust(position, 1, 5);
-                showOutAdapter.setmPosition(position);
+                pos = position;
+                formationListPresenter.reqeust(pos, 1, 5);
+                showOutAdapter.setmPosition(pos);
                 showOutAdapter.notifyDataSetChanged();
-                SharedPreferences sp =getContext().getSharedPreferences("Show",Context.MODE_PRIVATE);
-                SharedPreferences.Editor edit = sp.edit();
-                edit.putInt("moreid",position);
-                edit.commit();
             }
         });
+        SharedPreferences sp = getContext().getSharedPreferences("Disease", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putInt("showid", pos);
+        edit.commit();
 
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext());
         showInnerView.setLayoutManager(linearLayoutManager1);
@@ -131,17 +135,18 @@ public class ShowFragment extends WDFragment {
         });
     }
 
-    @OnClick({R2.id.show_banner, R2.id.show_disease, R2.id.show_drugs, R2.id.show_image,R2.id.show_more})
+    @OnClick({R2.id.show_banner, R2.id.show_disease, R2.id.show_drugs, R2.id.show_image, R2.id.show_more})
     public void onViewClicked(View view) {
         int i = view.getId();
         if (i == R.id.show_banner) {
+            intent(BannerActivity.class);
         } else if (i == R.id.show_disease) {
             intent(DiseaseActivity.class);
         } else if (i == R.id.show_drugs) {
             intent(DiseaseActivity.class);
         } else if (i == R.id.show_image) {
-        }else if (i == R.id.show_more){
-          intent(MoreActivity.class);
+        } else if (i == R.id.show_more) {
+            intent(MoreActivity.class);
         }
     }
 
@@ -153,7 +158,6 @@ public class ShowFragment extends WDFragment {
     private class banner implements DataCall<List<Banner>> {
         @Override
         public void success(final List<Banner> data, Object... args) {
-
             showBanner.setData(data, null);
             showBanner.setmAdapter(new XBanner.XBannerAdapter() {
                 @Override
@@ -161,6 +165,21 @@ public class ShowFragment extends WDFragment {
                     Glide.with(getActivity()).load(data.get(position).imageUrl).into((ImageView) view);
                     banner.setmAutoPalyTime(3000);
                     banner.startAutoPlay();
+                    String jumpUrl = data.get(position).imageUrl;
+                    String title = data.get(position).title;
+                    SharedPreferences sp = getContext().getSharedPreferences("Disease", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor edit = sp.edit();
+                    edit.putString("url", jumpUrl);
+                    edit.putString("urlname",title);
+                    edit.commit();
+                }
+
+            });
+            showBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
+                @Override
+                public void onItemClick(XBanner banner, int position) {
+                    Intent intent = new Intent(getContext(),BannerActivity.class);
+                    startActivity(intent);
                 }
             });
         }

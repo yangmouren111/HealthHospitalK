@@ -37,14 +37,16 @@ public class MoreActivity extends WDActivity {
 
     @Override
     protected void initView() {
+        SharedPreferences sp =getSharedPreferences("Disease",Context.MODE_PRIVATE);
+        moreid = sp.getInt("showid",0);
+
+
         formationListPresenter = new FormationListPresenter(new format());
         formationListPresenter.reqeust(moreid, 1, 5);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this);
         moreView.setLayoutManager(linearLayoutManager1);
         consultAdapter = new ConsultAdapter();
         moreView.setAdapter(consultAdapter);
-        SharedPreferences sp =getSharedPreferences("Show",Context.MODE_PRIVATE);
-        moreid = sp.getInt("moreid",0);
         consultAdapter.setOnItemClickListener(new ConsultAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {

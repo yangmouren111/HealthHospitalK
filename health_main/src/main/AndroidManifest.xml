@@ -16,7 +16,8 @@
         <activity android:name=".activity.Consultation_DetailsActivity" />
         <activity android:name=".activity.WriteSickCircleActivity" />
         <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".activity.MoreActivity"></activity>
+        <activity android:name=".activity.MoreActivity" />
+        <activity android:name=".activity.BannerActivity"></activity>
     </application>
 
 </manifest>

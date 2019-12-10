@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.wd.common.bean.HomePageSearch;
 import com.wd.common.bean.PopularSearch;
 import com.wd.common.core.DataCall;
 import com.wd.common.core.WDActivity;
@@ -12,12 +13,13 @@ import com.wd.common.core.exception.ApiException;
 import com.wd.health_main.R;
 import com.wd.health_main.R2;
 import com.wd.health_main.adapter.PopularSearchAdapter;
+import com.wd.health_main.presenter.HomePageSearchPresenter;
 import com.wd.health_main.presenter.PopularSearchPresenter;
+import com.wd.health_main.seach.KylinSearchView;
 
 import java.util.List;
 
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +33,8 @@ public class SearchActivity extends WDActivity {
     TextView searchText;
     @BindView(R2.id.search_view)
     RecyclerView searchView;
+    @BindView(R2.id.kylin_view)
+    KylinSearchView kylinView;
     private PopularSearchAdapter adapter;
 
     @Override
@@ -38,7 +42,7 @@ public class SearchActivity extends WDActivity {
         return R.layout.activity_search;
     }
 
-    @Override
+    @Override 
     protected void initView() {
         PopularSearchPresenter popularSearchPresenter = new PopularSearchPresenter(new Popilar());
         popularSearchPresenter.reqeust();
@@ -46,6 +50,7 @@ public class SearchActivity extends WDActivity {
         searchView.setLayoutManager(gridLayoutManager);
         adapter = new PopularSearchAdapter();
         searchView.setAdapter(adapter);
+        HomePageSearchPresenter homePageSearchPresenter = new HomePageSearchPresenter(new Homepage());
     }
 
     @Override
@@ -66,6 +71,7 @@ public class SearchActivity extends WDActivity {
         if (i == R.id.search_back) {
             finish();
         } else if (i == R.id.search_text) {
+
         }
     }
 
@@ -74,6 +80,18 @@ public class SearchActivity extends WDActivity {
         public void success(List<PopularSearch> data, Object... args) {
             adapter.addAll(data);
             adapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void fail(ApiException data, Object... args) {
+
+        }
+    }
+
+    private class Homepage implements DataCall<HomePageSearch> {
+        @Override
+        public void success(HomePageSearch data, Object... args) {
+
         }
 
         @Override

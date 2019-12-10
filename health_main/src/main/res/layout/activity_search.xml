@@ -20,6 +20,7 @@
             />
 
         <com.wd.health_main.seach.KylinSearchView
+            android:id="@+id/kylin_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
