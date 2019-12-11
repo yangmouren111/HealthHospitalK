@@ -3,6 +3,7 @@ package com.wd.health_vedio.view.activity;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
+import android.app.Service;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.opengl.ETC1;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -57,6 +59,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
 import static com.wd.common.core.WDApplication.getContext;
 
 public class VideoActivity extends WDFragment {
@@ -321,6 +324,28 @@ public class VideoActivity extends WDFragment {
                 popWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
                 final EditText edd = view.findViewById(R.id.video_setComment);
                 view.findViewById(R.id.video_seedComment).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!edd.getText().toString().equals("")){
+                            mDanmu.addBarrage(new Barrage(String.valueOf(edd.getText()), R.color.colorAccent));
+                            addVideoCommentPresenter.reqeust(1,"1",videoId,String.valueOf(edd.getText()));
+                            popWindow.dismiss();
+                        }else {
+                            popWindow.dismiss();
+                        }
+                    }
+                });
+                final EditText setComment = view.findViewById(R.id.video_setComment);
+                setComment.requestFocus();
+                handler.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        InputMethodManager imm = (InputMethodManager) setComment.getContext().getSystemService(Service.INPUT_METHOD_SERVICE);
+                        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                    }
+                }, 1);
+                setComment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (!edd.getText().toString().equals("")){
