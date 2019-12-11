@@ -23,10 +23,6 @@ INJECTED from F:\AndroidStudio\HealthHospital\health_vedio\src\main\AndroidManif
 		ADDED from F:\AndroidStudio\HealthHospital\health_vedio\src\main\AndroidManifest.xml:2:11-69
 application
 ADDED from F:\AndroidStudio\HealthHospital\health_vedio\src\main\AndroidManifest.xml:5:5-9:19
-activity#com.wd.health_vedio.view.activity.VideoActivity
-ADDED from F:\AndroidStudio\HealthHospital\health_vedio\src\main\AndroidManifest.xml:6:9-8:20
-	android:name
-		ADDED from F:\AndroidStudio\HealthHospital\health_vedio\src\main\AndroidManifest.xml:6:19-81
 uses-sdk
 INJECTED from F:\AndroidStudio\HealthHospital\health_vedio\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from F:\AndroidStudio\HealthHospital\health_vedio\src\main\AndroidManifest.xml

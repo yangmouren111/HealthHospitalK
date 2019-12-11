@@ -96,21 +96,21 @@ public final class R {
         public static int tv_current = 0x7f0c0113;
         public static int tv_duration = 0x7f0c0114;
         public static int tv_volume = 0x7f0c0115;
-        public static int video_current_time = 0x7f0c011b;
-        public static int video_item = 0x7f0c0123;
-        public static int video_quality_wrapper_area = 0x7f0c0125;
-        public static int volume_image_tip = 0x7f0c012c;
-        public static int volume_progressbar = 0x7f0c012d;
+        public static int video_current_time = 0x7f0c011d;
+        public static int video_item = 0x7f0c0125;
+        public static int video_quality_wrapper_area = 0x7f0c0127;
+        public static int volume_image_tip = 0x7f0c0136;
+        public static int volume_progressbar = 0x7f0c0137;
     }
     public static final class layout {
         private layout() {}
 
-        public static int jz_dialog_brightness = 0x7f0f002f;
-        public static int jz_dialog_progress = 0x7f0f0030;
-        public static int jz_dialog_volume = 0x7f0f0031;
-        public static int jz_layout_clarity = 0x7f0f0032;
-        public static int jz_layout_clarity_item = 0x7f0f0033;
-        public static int jz_layout_std = 0x7f0f0034;
+        public static int jz_dialog_brightness = 0x7f0f0030;
+        public static int jz_dialog_progress = 0x7f0f0031;
+        public static int jz_dialog_volume = 0x7f0f0032;
+        public static int jz_layout_clarity = 0x7f0f0033;
+        public static int jz_layout_clarity_item = 0x7f0f0034;
+        public static int jz_layout_std = 0x7f0f0035;
     }
     public static final class string {
         private string() {}
@@ -126,8 +126,8 @@ public final class R {
     public static final class style {
         private style() {}
 
-        public static int jz_popup_toast_anim = 0x7f160212;
-        public static int jz_style_dialog_progress = 0x7f160213;
+        public static int jz_popup_toast_anim = 0x7f160213;
+        public static int jz_style_dialog_progress = 0x7f160214;
     }
     public static final class xml {
         private xml() {}

@@ -6,21 +6,24 @@
     android:layout_height="wrap_content">
 
     <EditText
+        android:id="@+id/video_setComment"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_20"
+        android:padding="@dimen/dp_15"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:hint="快来留下你的看法吧"
         android:background="@null"
         android:textSize="20sp" />
 
-    <Button
+    <ImageView
+        android:id="@+id/video_seedComment"
         android:text="发布"
         android:background="#22292D"
-        android:textColor="@android:color/white"
-        android:layout_width="wrap_content"
+        android:src="@mipmap/send_meses"
+        android:paddingHorizontal="@dimen/dp_15"
+        android:layout_width="@dimen/dp_60"
         android:layout_height="match_parent" />
 
 </LinearLayout>

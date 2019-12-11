@@ -9,8 +9,12 @@
         android:targetSdkVersion="28" />
 
     <application>
-        <activity android:name="com.wd.health_vedio.view.activity.VideoActivity" >
+
+        <!--
+        <activity android:name="com.wd.health_vedio.view.activity.VideoActivity">
+
         </activity>
+        -->
     </application>
 
 </manifest>

@@ -19,6 +19,8 @@ anim design_snackbar_in
 anim design_snackbar_out
 anim tooltip_enter
 anim tooltip_exit
+anim video_window_close
+anim video_window_open
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
@@ -1681,6 +1683,8 @@ drawable selector_banner_point
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable video_title
+drawable video_window
+drawable video_window_button
 id BOTTOM
 id BallBeat
 id BallClipRotate
@@ -1962,7 +1966,9 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id video_addUserVideo
 id video_buy
+id video_buyNum
 id video_current_time
 id video_danmu
 id video_danmu_gone
@@ -1975,9 +1981,17 @@ id video_item
 id video_mySeekBar
 id video_quality_wrapper_area
 id video_recycler
+id video_removeUserVideo
+id video_seedComment
+id video_setComment
 id video_videoConnet
 id video_videoName
 id video_view
+id video_window_back
+id video_window_buyBtn
+id video_window_chong
+id video_window_myManery
+id video_window_videoPrice
 id view_offset_helper
 id visible
 id volume_image_tip
@@ -2037,6 +2051,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_video
 layout activity_view_pager_layout_manager
+layout buy_video_window
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -2095,8 +2110,10 @@ mipmap common_button_collection_large_n
 mipmap common_button_collection_large_s
 mipmap common_button_collection_small_n
 mipmap common_button_collection_small_s
+mipmap common_drugs
 mipmap common_icon_close_live_commenting_n
 mipmap common_icon_comment_large_n
+mipmap common_icon_drop_down_n
 mipmap common_icon_open_live_commenting_n
 mipmap common_icon_time_out_n
 mipmap common_icon_toll_n
@@ -2110,6 +2127,7 @@ mipmap img_video_2
 mipmap msg_icon
 mipmap my_icon_video_n
 mipmap search_icon
+mipmap send_meses
 mipmap share_icon
 raw video_1
 raw video_2
@@ -2207,6 +2225,7 @@ string title_settings_dialog
 string video_loading_failed
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
+style AnimationPreview
 style Animation_AppCompat_Dialog
 style Animation_AppCompat_DropDownUp
 style Animation_AppCompat_Tooltip
