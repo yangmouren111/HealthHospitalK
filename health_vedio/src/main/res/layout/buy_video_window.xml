@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/video_window"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/video_window_back"
+        android:layout_width="@dimen/dp_35"
+        android:layout_height="@dimen/dp_35"
+        android:padding="@dimen/dp_12"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/dp_25"
+        android:layout_marginRight="@dimen/dp_25"
+        android:src="@mipmap/common_icon_drop_down_n" />
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_marginTop="-10dp"
+        android:src="@mipmap/common_drugs"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80" />
+
+    <TextView
+        android:id="@+id/video_window_videoPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_10"
+        android:gravity="center"
+        android:text="300H币"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="@dimen/sp_14" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_52"
+        android:layout_gravity="center"
+        android:textSize="@dimen/sp_14"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/video_window_myManery"
+            android:text="我的H币：175，H币不足？"
+            android:textSize="@dimen/sp_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/video_window_chong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="立即充值"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="@dimen/sp_12" />
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/video_window_buyBtn"
+        android:text="立即购买"
+        android:textSize="@dimen/sp_14"
+        android:background="@drawable/video_window_button"
+        android:layout_marginHorizontal="@dimen/dp_25"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+
+
+</LinearLayout>

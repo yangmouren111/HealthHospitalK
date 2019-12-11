@@ -4,9 +4,9 @@
         <shape>
             <corners android:radius="5dip" />
             <gradient
-                android:startColor="@color/video_seekbar_start"
-                android:centerColor="@color/video_seekbar_start"
-                android:endColor="@color/video_seekbar_start"
+                android:startColor="@color/video_seekbar_end"
+                android:centerColor="@color/video_seekbar_end"
+                android:endColor="@color/video_seekbar_end"
                 android:angle="270"
                 />
         </shape>
@@ -17,9 +17,9 @@
             <shape>
                 <corners android:radius="5dip" />
                 <gradient
-                    android:startColor="@color/video_seekbar_end"
-                    android:centerColor="@color/video_seekbar_end"
-                    android:endColor="@color/video_seekbar_end"
+                    android:startColor="@color/video_seekbar_start"
+                    android:centerColor="@color/video_seekbar_start"
+                    android:endColor="@color/video_seekbar_start"
                     android:angle="0"
                     />
             </shape>
@@ -31,9 +31,9 @@
             <shape>
                 <corners android:radius="5dip" />
                 <gradient
-                    android:startColor="@color/video_seekbar_end"
-                    android:centerColor="@color/video_seekbar_end"
-                    android:endColor="@color/video_seekbar_end"
+                    android:startColor="@color/video_seekbar_start"
+                    android:centerColor="@color/video_seekbar_start"
+                    android:endColor="@color/video_seekbar_start"
                     android:angle="270"
                     />
             </shape>

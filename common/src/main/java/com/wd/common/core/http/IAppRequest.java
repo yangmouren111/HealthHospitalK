@@ -148,4 +148,12 @@ public interface IAppRequest {
     Observable<Result> cancelInfoCollection(@Header("userId") String userId,
                                             @Header("sessionId") String sessionId,
                                             @Field("infoId") int infoId);
+    //健康课堂视频收藏
+    @POST("health/user/video/verify/v1/addUserVideoCollection")
+    @FormUrlEncoded
+    Observable<Result> addUserVideoCollection(@Header("userId") int userId,
+                                              @Header("sessionId") String sessionId,
+                                              @Field("videoId") int videoId);
+
+
 }
