@@ -3,15 +3,20 @@ package com.wd.health_vedio.view.activity;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
-import android.graphics.Color;
+import android.content.Context;
 import android.media.MediaPlayer;
+import android.opengl.ETC1;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -34,6 +39,7 @@ import com.wd.common.core.exception.ApiException;
 import com.wd.health_vedio.R;
 import com.wd.health_vedio.R2;
 import com.wd.health_vedio.adapter.VideoGroupAdapter;
+import com.wd.health_vedio.presenter.AddUserVideoPresenter;
 import com.wd.health_vedio.presenter.AddVideoCommentPresenter;
 import com.wd.health_vedio.presenter.FindVideoCategoryPresenter;
 import com.wd.health_vedio.presenter.FindVideoCommentPresenter;
@@ -100,6 +106,7 @@ public class VideoActivity extends WDFragment {
     private InfoDialog dialog;
     private AddVideoCommentPresenter addVideoCommentPresenter;
     private FindVideoCommentPresenter findVideoCommentPresenter;
+    private AddUserVideoPresenter addUserVideoPresenter;
 
     @Override
     public String getPageName() {
@@ -130,8 +137,23 @@ public class VideoActivity extends WDFragment {
         videoBuyPresenter = new VideoBuyPresenter(new VideoBuyBack());
         addVideoCommentPresenter = new AddVideoCommentPresenter(new AddVideoCommentBack());
         findVideoCommentPresenter = new FindVideoCommentPresenter(new FindCommentBack());
+        addUserVideoPresenter = new AddUserVideoPresenter(new AddUserVideo());
 
         initListener();
+    }
+
+    class AddUserVideo implements DataCall{
+
+        @Override
+        public void success(Object data, Object... args) {
+            Toast.makeText(getContext(), "收藏成功", Toast.LENGTH_SHORT).show();
+            mVideoAdapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void fail(ApiException data, Object... args) {
+            Toast.makeText(getContext(), "收藏失败", Toast.LENGTH_SHORT).show();
+        }
     }
 
     //查询视频评论列表
@@ -153,12 +175,12 @@ public class VideoActivity extends WDFragment {
     class AddVideoCommentBack implements DataCall{
         @Override
         public void success(Object data, Object... args) {
-
+            Toast.makeText(getContext(), "发布成功", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void fail(ApiException data, Object... args) {
-
+            Toast.makeText(getContext(), "发布失败", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -220,6 +242,12 @@ public class VideoActivity extends WDFragment {
 
 
     private void initListener() {
+        mVideoAdapter.setSetUserVideo(new ViewPagerLayoutManagerAdapter.SetUserVideo() {
+            @Override
+            public void onUser(int videoId) {
+                addUserVideoPresenter.reqeust(1,"1",videoId);
+            }
+        });
 
         mVideoAdapter.setDanMuHide(new ViewPagerLayoutManagerAdapter.DanMuHide() {
             @Override
@@ -247,6 +275,13 @@ public class VideoActivity extends WDFragment {
                     @Override
                     public void onClick(View v) {
                         videoBuyPresenter.reqeust(1,"1",videoId,price);
+                        View view = LayoutInflater.from(getContext()).inflate(R.layout.video_secetr_text, null);
+                        final PopupWindow popWindow = new PopupWindow(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        popWindow.setOutsideTouchable(true);      //必须设置背景
+                        popWindow.setBackgroundDrawable(null);
+                        popWindow.setFocusable(true);
+                        //相对于父控件的位置（例如正中央Gravity.CENTER，下方Gravity.BOTTOM等），可以设置偏移或无偏移
+                        popWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
                     }
                 };
                 dialog = new InfoDialog.Builder(getContext())
@@ -260,10 +295,35 @@ public class VideoActivity extends WDFragment {
 
         mVideoAdapter.setOnAddComment(new ViewPagerLayoutManagerAdapter.OnAddComment() {
             @Override
-            public void addComment(int videoId) {
+            public void addComment(final int videoId) {
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.video_secetr_text, null);
+                final PopupWindow popWindow = new PopupWindow(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                popWindow.setOutsideTouchable(true);      //必须设置背景
+                popWindow.setBackgroundDrawable(null);
+                popWindow.setFocusable(true);
+                //相对于父控件的位置（例如正中央Gravity.CENTER，下方Gravity.BOTTOM等），可以设置偏移或无偏移
+                popWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+                final EditText edd = view.findViewById(R.id.video_setComment);
+                view.findViewById(R.id.video_seedComment).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!edd.getText().toString().equals("")){
+                            mDanmu.addBarrage(new Barrage(String.valueOf(edd.getText()), R.color.colorAccent));
+                            addVideoCommentPresenter.reqeust(1,"1",videoId,String.valueOf(edd.getText()));
+                            popWindow.dismiss();
+                        }else {
+                            popWindow.dismiss();
+                        }
+                    }
+                });
 
-                //mDanmu.addBarrage(new Barrage(data.get(i).content, R.color.colorAccent));
-                //addVideoCommentPresenter.reqeust(1,"1",videoId,"6666666");
+                //直接显示在参照View 的左下方
+                //popWindow.showAsDropDown(View anchor);
+                //可以通过xoff，yOff,来调节x,y方向的偏移
+                //popWindow.showAsDropDown(View anchor, int xoff, int off)
+                //相对于整个屏幕的window而言，通过gravity调整显示在左、上、右、下、中. x,y调整两个方向的偏移
+                //popWindow.showAsDropDown(View parent, int gravity, int x, int y)
+
             }
         });
 

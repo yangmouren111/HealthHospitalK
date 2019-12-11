@@ -28,8 +28,4 @@ public class MainActivity extends WDActivity {
     }
 
 
-    @OnClick(R2.id.to_intent)
-    public void onViewClicked() {
-        intent(VideoActivity.class);
-    }
 }

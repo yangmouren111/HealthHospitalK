@@ -3,9 +3,9 @@
     package="com.wd.health_vedio">
 
     <application>
-        <activity android:name="com.wd.health_vedio.view.activity.VideoActivity">
+        <!--<activity android:name="com.wd.health_vedio.view.activity.VideoActivity">
 
-        </activity>
+        </activity>-->
     </application>
 
 

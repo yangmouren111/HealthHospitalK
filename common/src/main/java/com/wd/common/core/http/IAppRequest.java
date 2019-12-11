@@ -55,9 +55,18 @@ public interface IAppRequest {
                                                       @Field("videoId") int videoId,
                                                       @Field("price") String price
     );
+
     //查询视频评论列表
     @GET("user/video/v1/findVideoCommentList")
     Observable<Result<List<VideoComment>>> findVideoCommentList(@Query("videoId") int videoId);
+
+
+    //健康课堂视频收藏
+    @POST("user/video/verify/v1/addUserVideoCollection")
+    @FormUrlEncoded
+    Observable<Result> addUserVideoCollection(@Header("userId") int userId,
+                                              @Header("sessionId") String sessionId,
+                                              @Field("videoId") int videoId);
 
 
 }

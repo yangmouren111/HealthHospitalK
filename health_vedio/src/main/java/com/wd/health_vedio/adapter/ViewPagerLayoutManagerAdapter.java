@@ -19,6 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.wd.common.bean.VideoVo;
 import com.wd.health_vedio.R;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,6 +64,36 @@ public class ViewPagerLayoutManagerAdapter extends RecyclerView.Adapter<ViewPage
         final VideoVo videoVo = list.get(position);
         holder.mComment.setText(videoVo.abstracts);
         holder.mName.setText(videoVo.title);
+        if (videoVo.buyNum<10000){
+            holder.buyNum.setText(videoVo.buyNum+"人\n"+"已购买");
+        }else if(videoVo.buyNum>=10000){
+            // 具体的注册资本等信息（单位元）
+            BigDecimal bigDecimal = new BigDecimal(String.valueOf(videoVo.buyNum));
+            // 转换为万元（除以10000）
+            BigDecimal decimal = bigDecimal.divide(new BigDecimal("10000"));
+            // 保留两位小数
+            DecimalFormat formater = new DecimalFormat("0.0");
+            // 四舍五入
+            formater.setRoundingMode(RoundingMode.HALF_UP);
+            // 格式化完成之后得出结果
+            String formatNum = formater.format(decimal);
+            holder.buyNum.setText(formatNum+"万人\n"+"已购买");
+        }
+
+        if (videoVo.whetherCollection == 2){
+            holder.mUser.setVisibility(View.VISIBLE);
+            holder.mNull.setVisibility(View.GONE);
+            holder.mUser.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setUserVideo.onUser(videoVo.id);
+                }
+            });
+        }else {
+            holder.mUser.setVisibility(View.GONE);
+            holder.mNull.setVisibility(View.VISIBLE);
+        }
+
         if (videoVo.whetherBuy == 2){
             holder.videoView.setVideoURI(Uri.parse(videoVo.shearUrl));
             holder.videoBuy.setImageResource(R.mipmap.common_icon_toll_n);
@@ -124,7 +157,7 @@ public class ViewPagerLayoutManagerAdapter extends RecyclerView.Adapter<ViewPage
                             holder.seekBar.setProgress(time);
                             Message mess = new Message();
                             mess.what =0;
-                            sendMessageDelayed(mess,500);
+                            sendMessageDelayed(mess,1000);
                         }
                     }
                 };
@@ -151,10 +184,10 @@ public class ViewPagerLayoutManagerAdapter extends RecyclerView.Adapter<ViewPage
     public class VideoVoViewHolder extends RecyclerView.ViewHolder {
         ImageView img_thumb,videoBuy;
         VideoView videoView;
-        ImageView img_play,mHide,mGone;
+        ImageView img_play,mHide,mGone,mUser,mNull;
         RelativeLayout rootView;
         SeekBar seekBar;
-        TextView mComment,mName;
+        TextView mComment,mName,buyNum;
 
         public VideoVoViewHolder(View itemView) {
             super(itemView);
@@ -168,6 +201,9 @@ public class ViewPagerLayoutManagerAdapter extends RecyclerView.Adapter<ViewPage
             mName = itemView.findViewById(R.id.video_videoName);
             mHide = itemView.findViewById(R.id.video_danmu_hide);
             mGone = itemView.findViewById(R.id.video_danmu_gone);
+            mUser = itemView.findViewById(R.id.video_addUserVideo);
+            mNull = itemView.findViewById(R.id.video_removeUserVideo);
+            buyNum = itemView.findViewById(R.id.video_buyNum);
         }
     }
     private OnVideoBuy onVideoBuy;
@@ -208,6 +244,16 @@ public class ViewPagerLayoutManagerAdapter extends RecyclerView.Adapter<ViewPage
 
     public interface DanMuHide{
         void onDanMuHide(Boolean isHide);
+    }
+
+    private SetUserVideo setUserVideo;
+
+    public void setSetUserVideo(SetUserVideo setUserVideo) {
+        this.setUserVideo = setUserVideo;
+    }
+
+    public interface SetUserVideo{
+        void onUser(int videoId);
     }
 
 
