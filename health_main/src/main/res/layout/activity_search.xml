@@ -18,14 +18,16 @@
             android:layout_marginLeft="@dimen/dp_20"
             android:layout_centerVertical="true"
             />
-
-        <com.wd.health_main.seach.KylinSearchView
+        <EditText
             android:id="@+id/kylin_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dp_240"
+            android:layout_height="@dimen/dp_34"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            ></com.wd.health_main.seach.KylinSearchView>
+           android:background="@drawable/sou_shape"
+            android:hint="病症、药品名称、医生姓名"
+            android:paddingLeft="10dp"
+            />
         <TextView
             android:id="@+id/search_text"
             android:layout_width="wrap_content"
@@ -44,6 +46,13 @@
     android:layout_height="@dimen/dp_6"
     android:background="#F2F2F2"
     />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_recy"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
     <TextView
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginTop="@dimen/dp_20"

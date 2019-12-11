@@ -165,12 +165,11 @@ public class ShowFragment extends WDFragment {
                     Glide.with(getActivity()).load(data.get(position).imageUrl).into((ImageView) view);
                     banner.setmAutoPalyTime(3000);
                     banner.startAutoPlay();
-                    String jumpUrl = data.get(position).imageUrl;
+                    String jumpUrl = data.get(position).jumpUrl;
                     String title = data.get(position).title;
                     SharedPreferences sp = getContext().getSharedPreferences("Disease", Context.MODE_PRIVATE);
                     SharedPreferences.Editor edit = sp.edit();
                     edit.putString("url", jumpUrl);
-                    edit.putString("urlname",title);
                     edit.commit();
                 }
 

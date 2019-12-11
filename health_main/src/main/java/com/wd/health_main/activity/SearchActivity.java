@@ -2,6 +2,7 @@ package com.wd.health_main.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -13,13 +14,15 @@ import com.wd.common.core.exception.ApiException;
 import com.wd.health_main.R;
 import com.wd.health_main.R2;
 import com.wd.health_main.adapter.PopularSearchAdapter;
+import com.wd.health_main.adapter.SearchAdapter;
 import com.wd.health_main.presenter.HomePageSearchPresenter;
 import com.wd.health_main.presenter.PopularSearchPresenter;
-import com.wd.health_main.seach.KylinSearchView;
 
+import java.util.Arrays;
 import java.util.List;
 
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,8 +37,12 @@ public class SearchActivity extends WDActivity {
     @BindView(R2.id.search_view)
     RecyclerView searchView;
     @BindView(R2.id.kylin_view)
-    KylinSearchView kylinView;
+    EditText kylinView;
+    @BindView(R2.id.search_recy)
+    RecyclerView searchRecy;
     private PopularSearchAdapter adapter;
+    private HomePageSearchPresenter homePageSearchPresenter;
+    private SearchAdapter searchAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -50,7 +57,11 @@ public class SearchActivity extends WDActivity {
         searchView.setLayoutManager(gridLayoutManager);
         adapter = new PopularSearchAdapter();
         searchView.setAdapter(adapter);
-        HomePageSearchPresenter homePageSearchPresenter = new HomePageSearchPresenter(new Homepage());
+        searchAdapter = new SearchAdapter();
+        homePageSearchPresenter = new HomePageSearchPresenter(new Homepage());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        searchRecy.setLayoutManager(linearLayoutManager);
+        searchRecy.setAdapter(searchAdapter);
     }
 
     @Override
@@ -71,7 +82,8 @@ public class SearchActivity extends WDActivity {
         if (i == R.id.search_back) {
             finish();
         } else if (i == R.id.search_text) {
-
+            String trim = kylinView.getText().toString().trim();
+            homePageSearchPresenter.reqeust(trim);
         }
     }
 
@@ -91,7 +103,8 @@ public class SearchActivity extends WDActivity {
     private class Homepage implements DataCall<HomePageSearch> {
         @Override
         public void success(HomePageSearch data, Object... args) {
-
+            searchAdapter.addAll(Arrays.asList(data));
+            searchAdapter.notifyDataSetChanged();
         }
 
         @Override
