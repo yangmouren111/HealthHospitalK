@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -274,14 +275,29 @@ public class VideoActivity extends WDFragment {
                 View.OnClickListener onClickListener = new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        videoBuyPresenter.reqeust(1,"1",videoId,price);
-                        View view = LayoutInflater.from(getContext()).inflate(R.layout.video_secetr_text, null);
+                        dialog.dismiss();
+                        View view = LayoutInflater.from(getContext()).inflate(R.layout.buy_video_window, null);
                         final PopupWindow popWindow = new PopupWindow(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                         popWindow.setOutsideTouchable(true);      //必须设置背景
                         popWindow.setBackgroundDrawable(null);
                         popWindow.setFocusable(true);
+                        popWindow.setAnimationStyle(R.style.AnimationPreview);
                         //相对于父控件的位置（例如正中央Gravity.CENTER，下方Gravity.BOTTOM等），可以设置偏移或无偏移
                         popWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+                        TextView mPrice = view.findViewById(R.id.video_window_videoPrice);
+                        mPrice.setText(price+"H币");
+                        view.findViewById(R.id.video_window_back).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                popWindow.dismiss();
+                            }
+                        });
+                        view.findViewById(R.id.video_window_buyBtn).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                videoBuyPresenter.reqeust(1,"1",videoId,price);
+                            }
+                        });
                     }
                 };
                 dialog = new InfoDialog.Builder(getContext())
