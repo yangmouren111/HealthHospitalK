@@ -24,12 +24,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
-
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.kd.easybarrage.Barrage;
 import com.kd.easybarrage.BarrageView;
 import com.wd.common.bean.VideoComment;
@@ -52,11 +50,9 @@ import com.wd.health_vedio.presenter.VideoBuyPresenter;
 import com.wd.health_vedio.view.iview.InfoDialog;
 import com.wd.health_vedio.view.viewpager.OnViewPagerListener;
 import com.wd.health_vedio.view.viewpager.ViewPagerLayoutManager;
-
 import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
-
 import butterknife.BindView;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
@@ -111,6 +107,7 @@ public class VideoActivity extends WDFragment {
     private AddVideoCommentPresenter addVideoCommentPresenter;
     private FindVideoCommentPresenter findVideoCommentPresenter;
     private AddUserVideoPresenter addUserVideoPresenter;
+    private Handler hand;
 
     @Override
     public String getPageName() {
@@ -199,6 +196,7 @@ public class VideoActivity extends WDFragment {
         @Override
         public void fail(ApiException data, Object... args) {
             Toast.makeText(getContext(), "购买失败", Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -208,7 +206,7 @@ public class VideoActivity extends WDFragment {
         public void success(final List<VideoGroup> data, Object... args) {
             videoGroupAdapter.addAll(data);
             videoGroupAdapter.notifyDataSetChanged();
-
+            mVideoAdapter.notifyDataSetChanged();
             findVideoVoPresenter.reqeust(1, "1", data.get(0).id);
 
             videoGroupAdapter.setVideoGroupItemOnClickListener(new VideoGroupAdapter.VideoGroupItemOnClickListener() {
@@ -430,9 +428,46 @@ public class VideoActivity extends WDFragment {
         final ImageView imgThumb = itemView.findViewById(R.id.img_thumb);
         final RelativeLayout rootView = itemView.findViewById(R.id.root_view);
         final SeekBar seekBar = itemView.findViewById(R.id.video_mySeekBar);
+        final TextView tryLook = itemView.findViewById(R.id.video_tryLook);
+        final LinearLayout tryView = itemView.findViewById(R.id.video_tryView);
         final MediaPlayer[] mediaPlayer = new MediaPlayer[1];
 
         videoView.start();
+
+        hand = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if (msg.what == 2){
+                    int a = (int) msg.obj;
+                    hand.removeCallbacksAndMessages(null);
+                    if (a>0){
+                        a--;
+                        tryLook.setText(a + "S");
+                        Message message = new Message();
+                        message.obj = a;
+                        message.what = 2;
+                        hand.sendMessageDelayed(message,1000);
+                    }else {
+                        hand.removeCallbacksAndMessages(null);
+                        videoView.stopPlayback();
+                    }
+
+                }
+            }
+        };
+        hand.removeCallbacksAndMessages(null);
+        mVideoAdapter.setSetTryLook(new ViewPagerLayoutManagerAdapter.SetTryLook() {
+            @Override
+            public void isTry(int miss) {
+                    Message message = new Message();
+                    message.obj = 15;
+                    message.what = 2;
+                    hand.sendMessageDelayed(message,1000);
+
+            }
+        });
+
 
 
         videoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -66,6 +67,7 @@ public class ViewPagerLayoutManagerAdapter extends RecyclerView.Adapter<ViewPage
         holder.mName.setText(videoVo.title);
         if (videoVo.buyNum<10000){
             holder.buyNum.setText(videoVo.buyNum+"人\n"+"已购买");
+
         }else if(videoVo.buyNum>=10000){
             // 具体的注册资本等信息（单位元）
             BigDecimal bigDecimal = new BigDecimal(String.valueOf(videoVo.buyNum));
@@ -103,7 +105,9 @@ public class ViewPagerLayoutManagerAdapter extends RecyclerView.Adapter<ViewPage
                     onVideoBuy.videoBuy(videoVo.id,videoVo.price);
                 }
             });
+            setTryLook.isTry(15);
         }else {
+            holder.tryView.setVisibility(View.GONE);
             holder.videoView.setVideoURI(Uri.parse(videoVo.originalUrl));
             holder.videoBuy.setImageResource(R.mipmap.common_icon_comment_large_n);
             holder.videoBuy.setOnClickListener(new View.OnClickListener() {
@@ -187,7 +191,8 @@ public class ViewPagerLayoutManagerAdapter extends RecyclerView.Adapter<ViewPage
         ImageView img_play,mHide,mGone,mUser,mNull;
         RelativeLayout rootView;
         SeekBar seekBar;
-        TextView mComment,mName,buyNum;
+        LinearLayout tryView;
+        TextView mComment,mName,buyNum,tryLook;
 
         public VideoVoViewHolder(View itemView) {
             super(itemView);
@@ -204,6 +209,8 @@ public class ViewPagerLayoutManagerAdapter extends RecyclerView.Adapter<ViewPage
             mUser = itemView.findViewById(R.id.video_addUserVideo);
             mNull = itemView.findViewById(R.id.video_removeUserVideo);
             buyNum = itemView.findViewById(R.id.video_buyNum);
+            tryLook = itemView.findViewById(R.id.video_tryLook);
+            tryView = itemView.findViewById(R.id.video_tryView);
         }
     }
     private OnVideoBuy onVideoBuy;
@@ -254,6 +261,16 @@ public class ViewPagerLayoutManagerAdapter extends RecyclerView.Adapter<ViewPage
 
     public interface SetUserVideo{
         void onUser(int videoId);
+    }
+
+    private SetTryLook setTryLook;
+
+    public void setSetTryLook(SetTryLook setTryLook) {
+        this.setTryLook = setTryLook;
+    }
+
+    public interface SetTryLook{
+        void isTry(int miss);
     }
 
 
