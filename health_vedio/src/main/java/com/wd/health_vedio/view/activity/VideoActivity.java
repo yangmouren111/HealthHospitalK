@@ -4,9 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.app.Service;
-import android.content.Context;
 import android.media.MediaPlayer;
-import android.opengl.ETC1;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -34,7 +32,6 @@ import com.wd.common.bean.VideoComment;
 import com.wd.common.bean.VideoGroup;
 import com.wd.common.bean.VideoVo;
 import com.wd.common.core.DataCall;
-import com.wd.common.core.WDActivity;
 import com.wd.common.core.WDFragment;
 import com.wd.common.core.exception.ApiException;
 import com.wd.health_vedio.R;
@@ -55,33 +52,27 @@ import java.util.List;
 import java.util.Locale;
 import butterknife.BindView;
 
-import static android.content.Context.INPUT_METHOD_SERVICE;
-import static com.wd.common.core.WDApplication.getContext;
-
 public class VideoActivity extends WDFragment {
-
 
     @BindView(R2.id.video_group_recycler)
     RecyclerView mGroup;
     @BindView(R2.id.video_drop_down)
     ImageView dropDown;
-    private static final String TAG = "ViewPagerActivity";
     @BindView(R2.id.video_recycler)
     RecyclerView mRecyclerView;
     @BindView(R2.id.video_danmu)
     BarrageView mDanmu;
     private ViewPagerLayoutManagerAdapter mVideoAdapter;
     private ViewPagerLayoutManager mLayoutManager;
-
     private FindVideoVoPresenter findVideoVoPresenter;
     private FindVideoCategoryPresenter findVideoCategoryPresenter;
     private VideoGroupAdapter videoGroupAdapter;
+    private static final String TAG = "ViewPagerActivity";
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 0) {
-
                 ObjectAnimator imageX = new ObjectAnimator().ofFloat(dropDown, "translationX", 0, 0);
                 ObjectAnimator imageY = new ObjectAnimator().ofFloat(dropDown, "translationY", -250f, 0);
                 //组合动画
@@ -89,7 +80,6 @@ public class VideoActivity extends WDFragment {
                 imageSer.playTogether(imageX, imageY); //设置动画
                 imageSer.setDuration(1000);  //设置动画时间
                 imageSer.start();
-
 
                 ObjectAnimator groupX = new ObjectAnimator().ofFloat(mGroup, "translationX", 0, 0);
                 ObjectAnimator groupY = new ObjectAnimator().ofFloat(mGroup, "translationY", 200f, 0);
@@ -102,7 +92,6 @@ public class VideoActivity extends WDFragment {
         }
     };
     private VideoBuyPresenter videoBuyPresenter;
-    private AlertDialog alertDialog;
     private InfoDialog dialog;
     private AddVideoCommentPresenter addVideoCommentPresenter;
     private FindVideoCommentPresenter findVideoCommentPresenter;
@@ -142,7 +131,7 @@ public class VideoActivity extends WDFragment {
 
         initListener();
     }
-
+    //收藏视频
     class AddUserVideo implements DataCall{
 
         @Override
@@ -156,7 +145,6 @@ public class VideoActivity extends WDFragment {
             Toast.makeText(getContext(), "收藏失败", Toast.LENGTH_SHORT).show();
         }
     }
-
     //查询视频评论列表
     class FindCommentBack implements DataCall<List<VideoComment>>{
         @Override
@@ -171,7 +159,6 @@ public class VideoActivity extends WDFragment {
 
         }
     }
-
     //发表视频评论（弹幕）
     class AddVideoCommentBack implements DataCall{
         @Override
@@ -184,7 +171,6 @@ public class VideoActivity extends WDFragment {
             Toast.makeText(getContext(), "发布失败", Toast.LENGTH_SHORT).show();
         }
     }
-
     //健康课堂视频购买
     class VideoBuyBack implements DataCall{
         @Override
@@ -199,7 +185,6 @@ public class VideoActivity extends WDFragment {
 
         }
     }
-
     //根据视频类目查询视频列表
     class FindVideoCategoryBack implements DataCall<List<VideoGroup>> {
         @Override
@@ -241,8 +226,7 @@ public class VideoActivity extends WDFragment {
 
         }
     }
-
-
+    //设置监听
     private void initListener() {
         mVideoAdapter.setSetUserVideo(new ViewPagerLayoutManagerAdapter.SetUserVideo() {
             @Override
@@ -355,17 +339,8 @@ public class VideoActivity extends WDFragment {
                         }
                     }
                 });
-
-                //直接显示在参照View 的左下方
-                //popWindow.showAsDropDown(View anchor);
-                //可以通过xoff，yOff,来调节x,y方向的偏移
-                //popWindow.showAsDropDown(View anchor, int xoff, int off)
-                //相对于整个屏幕的window而言，通过gravity调整显示在左、上、右、下、中. x,y调整两个方向的偏移
-                //popWindow.showAsDropDown(View parent, int gravity, int x, int y)
-
             }
         });
-
 
         dropDown.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -377,7 +352,6 @@ public class VideoActivity extends WDFragment {
                 imageSer.playTogether(imageX, imageY); //设置动画
                 imageSer.setDuration(1000);  //设置动画时间
                 imageSer.start();
-
 
                 ObjectAnimator groupX = new ObjectAnimator().ofFloat(mGroup, "translationX", 0, 0);
                 ObjectAnimator groupY = new ObjectAnimator().ofFloat(mGroup, "translationY", 0, 200f);
@@ -423,6 +397,12 @@ public class VideoActivity extends WDFragment {
 
     private void playVideo(int position) {
         View itemView = mRecyclerView.getChildAt(0);
+        if (itemView!=null){
+            setContentView(itemView);
+        }
+    }
+
+    private void setContentView(View itemView) {
         final VideoView videoView = itemView.findViewById(R.id.video_view);
         final ImageView imgPlay = itemView.findViewById(R.id.img_play);
         final ImageView imgThumb = itemView.findViewById(R.id.img_thumb);
@@ -468,8 +448,6 @@ public class VideoActivity extends WDFragment {
             }
         });
 
-
-
         videoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
             @Override
             public boolean onInfo(MediaPlayer mp, int what, int extra) {
@@ -480,10 +458,8 @@ public class VideoActivity extends WDFragment {
             }
         });
 
-
         imgPlay.setOnClickListener(new View.OnClickListener() {
             boolean isPlaying = true;
-
             @Override
             public void onClick(View v) {
                 if (videoView.isPlaying()) {
@@ -498,19 +474,15 @@ public class VideoActivity extends WDFragment {
             }
         });
     }
-
     //将长度转换为时间
     StringBuilder mFormatBuilder = new StringBuilder();
     Formatter mFormatter = new Formatter(mFormatBuilder, Locale.getDefault());
-
     //将长度转换为时间
     private String stringForTime(int timeMs) {
         int totalSeconds = timeMs / 1000;
-
         int seconds = totalSeconds % 60;
         int minutes = (totalSeconds / 60) % 60;
         int hours = totalSeconds / 3600;
-
         mFormatBuilder.setLength(0);
         if (hours > 0) {
             return mFormatter.format("%d:%02d:%02d", hours, minutes, seconds).toString();
@@ -519,18 +491,17 @@ public class VideoActivity extends WDFragment {
         }
     }
 
-
     private void releaseVideo(int index) {
         View itemView = mRecyclerView.getChildAt(index);
-        final VideoView videoView = itemView.findViewById(R.id.video_view);
-        final ImageView imgThumb = itemView.findViewById(R.id.img_thumb);
-        final ImageView imgPlay = itemView.findViewById(R.id.img_play);
-        videoView.stopPlayback();
-        imgThumb.animate().alpha(1).start();
-        imgPlay.animate().alpha(0f).start();
-
+        if (itemView!=null){
+            final VideoView videoView = itemView.findViewById(R.id.video_view);
+            final ImageView imgThumb = itemView.findViewById(R.id.img_thumb);
+            final ImageView imgPlay = itemView.findViewById(R.id.img_play);
+            videoView.stopPlayback();
+            imgThumb.animate().alpha(1).start();
+            imgPlay.animate().alpha(0f).start();
+        }
     }
-
 
     protected void destoryData() {
         handler.removeCallbacksAndMessages(null);
