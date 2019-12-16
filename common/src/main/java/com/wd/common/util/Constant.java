@@ -20,7 +20,7 @@ public class Constant {
     public final static String ACTIVITY_URL_MAIN = "/main/MainActivity";
     public final static String ACTIVITY_URL_ADD_CIRCLE = "/main/AddCircleActivity";
     public final static String ACTIVITY_URL_SET = "/main/SetActivity";
-
+    public final static String ACTIVITY_URL_Inquiry_Main = "/activity/Inquiry_MainActivity";
 
     //-----------open_main----首页模块随便动，我看提交历史删你库-----
 

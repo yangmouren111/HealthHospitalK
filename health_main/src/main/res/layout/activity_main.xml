@@ -7,7 +7,11 @@
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
+<com.wd.health_main.seach.StatusBarView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#F2F2F2"
+    />
     <RelativeLayout
         android:background="#f2f2f2"
         android:layout_width="match_parent"

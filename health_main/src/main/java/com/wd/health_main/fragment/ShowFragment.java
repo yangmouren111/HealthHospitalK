@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.stx.xhb.xbanner.XBanner;
 import com.wd.common.bean.Banner;
@@ -39,12 +40,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
+import health.wd.com.health_query.activity.QueryActivity;
 
 /**
  * Time:  2019-12-04
  * Author:  杨世博
  * Description: 展示首页
  */
+
 public class ShowFragment extends WDFragment {
 
     @BindView(R2.id.show_banner)
@@ -97,6 +100,14 @@ public class ShowFragment extends WDFragment {
         departmentPresenter.reqeust();
         show_inquiryAdaper = new Show_InquiryAdaper();
         showRecyvleView.setAdapter(show_inquiryAdaper);
+        show_inquiryAdaper.setOnItemClickListener(new Show_InquiryAdaper.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+              Intent intent = new Intent(getContext(),QueryActivity.class);
+              intent.putExtra("showZixunId",position);
+              startActivity(intent);
+            }
+        });
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
         showRecyvleView.setLayoutManager(gridLayoutManager);
         plateListPresenter = new PlateListPresenter(new plate());

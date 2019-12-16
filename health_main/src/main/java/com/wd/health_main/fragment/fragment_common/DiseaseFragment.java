@@ -62,6 +62,10 @@ public class DiseaseFragment extends WDFragment {
         disease_parent_adaper.setOnItemClickListener(new Disease_Parent_Adaper.OnItemClickListener() {
             @Override
             public void onClick(int position) {
+                SharedPreferences sp = getContext().getSharedPreferences("Disease", Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putInt("deptId", position);
+                edit.commit();
                 categroyPresenter.reqeust(position);
                 disease_parent_adaper.setmPosition(position);
                 disease_parent_adaper.notifyDataSetChanged();

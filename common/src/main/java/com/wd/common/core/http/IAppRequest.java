@@ -6,6 +6,7 @@ import com.wd.common.bean.DepartmentBean;
 import com.wd.common.bean.DrugsCateBean;
 import com.wd.common.bean.DrugsKonwBean;
 import com.wd.common.bean.DrugsledgeBean;
+import com.wd.common.bean.FindDoctorListBean;
 import com.wd.common.bean.FormaBean;
 import com.wd.common.bean.HomePageSearch;
 import com.wd.common.bean.InformaBean;
@@ -17,8 +18,10 @@ import com.wd.common.bean.Result;
 import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 import com.wd.common.bean.BDResult;
@@ -148,6 +151,7 @@ public interface IAppRequest {
     Observable<Result> cancelInfoCollection(@Header("userId") String userId,
                                             @Header("sessionId") String sessionId,
                                             @Field("infoId") int infoId);
+
     //健康课堂视频收藏
     @POST("health/user/video/verify/v1/addUserVideoCollection")
     @FormUrlEncoded
@@ -155,5 +159,43 @@ public interface IAppRequest {
                                               @Header("sessionId") String sessionId,
                                               @Field("videoId") int videoId);
 
+    //查询问诊医生列表 http://172.17.8.100/health/user/inquiry/v1/findDoctorList
+    @GET("health/user/inquiry/v1/findDoctorList")
+    Observable<Result<List<FindDoctorListBean>>> findDoctorList(@Query("deptId") int deptId,
+                                                                @Query("condition") int condition,
+                                                                @Query("sortBy") int sortBy,
+                                                                @Query("page") int page,
+                                                                @Query("count") int count);
 
+    //查询医生明细信息 http://172.17.8.100/health/user/inquiry/v1/findDoctorInfo
+    @GET("health/user/inquiry/v1/findDoctorInfo")
+    Observable<Result<InformaBean>> findDoctorInfo(@Header("userId") String userId,
+                                                   @Header("sessionId") String sessionId,
+                                                   @Query("doctorId") int doctorId);
+
+    //咨询医生 http://172.17.8.100/health/user/inquiry/verify/v1/consultDoctor
+    @PUT("health/user/inquiry/verify/v1/consultDoctor")
+    Observable<Result> consultDoctor(@Header("userId") String userId,
+                                                  @Header("sessionId") String sessionId,
+                                                  @Field("doctorId") int doctorId);
+
+    //关注医生 http://172.17.8.100/health/user/inquiry/verify/v1/followDoctor
+    @POST("health/user/inquiry/verify/v1/followDoctor")
+    @FormUrlEncoded
+    Observable<Result> followDoctor(@Header("userId") String userId,
+                                    @Header("sessionId") String sessionId,
+                                    @Field("doctorId") int doctorId);
+
+    //取消关注医生 http://172.17.8.100/health/user/inquiry/verify/v1/cancelFollow
+    @DELETE("health/user/inquiry/verify/v1/cancelFollow")
+    @FormUrlEncoded
+    Observable<Result> cancelFollow(@Header("userId") String userId,
+                                    @Header("sessionId") String sessionId,
+                                    @Field("doctorId") int doctorId);
+
+    //结束问诊 http://172.17.8.100/health/user/inquiry/verify/v1/endInquiry
+    @PUT("health/user/inquiry/verify/v1/endInquiry")
+    Observable<Result<InformaBean>> endInquiry(@Header("userId") String userId,
+                                               @Header("sessionId") String sessionId,
+                                               @Field("doctorId") int doctorId);
 }

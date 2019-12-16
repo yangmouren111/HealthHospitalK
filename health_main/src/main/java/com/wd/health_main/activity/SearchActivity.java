@@ -48,7 +48,6 @@ public class SearchActivity extends WDActivity {
     protected int getLayoutId() {
         return R.layout.activity_search;
     }
-
     @Override
     protected void initView() {
         PopularSearchPresenter popularSearchPresenter = new PopularSearchPresenter(new Popilar());

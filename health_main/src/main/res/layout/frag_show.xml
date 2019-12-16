@@ -18,39 +18,11 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_32"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="@dimen/dp_32"
-                        android:layout_height="@dimen/dp_32"
-                        android:layout_marginLeft="@dimen/dp_12"
-                        android:background="@drawable/wallet_icon_clock_n" />
-
-                    <com.wd.health_main.seach.KylinSearchView_Out
-                        android:id="@+id/kylin_out"
-                        android:layout_marginLeft="@dimen/dp_10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/dp_10"
-                        ></com.wd.health_main.seach.KylinSearchView_Out>
-
-                    <ImageView
-                        android:layout_width="@dimen/dp_32"
-                        android:layout_height="@dimen/dp_32"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/dp_12"
-                        android:background="@drawable/common_nav_message_white_n" />
-                </LinearLayout>
 
                 <com.stx.xhb.xbanner.XBanner
                     android:id="@+id/show_banner"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_200"
-                    android:layout_marginTop="10dp"
                     app:canLoop="true"
                     app:open_mz_mode="true"></com.stx.xhb.xbanner.XBanner>
 
@@ -281,22 +253,48 @@
                     android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
 
 
+                <TextView
+                    android:id="@+id/show_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="@dimen/dp_20"
 
-                    <TextView
-                        android:id="@+id/show_more"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                       android:layout_gravity="right"
-                        android:layout_marginRight="@dimen/dp_20"
-
-                        android:textColor="#3087ea"
-                        android:textSize="@dimen/sp_12" />
+                    android:textColor="#3087ea"
+                    android:textSize="@dimen/sp_12" />
 
             </LinearLayout>
-
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_32"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dp_32"
+            android:layout_height="@dimen/dp_32"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:background="@drawable/wallet_icon_clock_n" />
+
+        <com.wd.health_main.seach.KylinSearchView_Out
+            android:id="@+id/kylin_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"></com.wd.health_main.seach.KylinSearchView_Out>
+
+        <ImageView
+            android:layout_width="@dimen/dp_32"
+            android:layout_height="@dimen/dp_32"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_12"
+            android:background="@drawable/common_nav_message_white_n" />
+    </LinearLayout>
 
 
 </RelativeLayout>

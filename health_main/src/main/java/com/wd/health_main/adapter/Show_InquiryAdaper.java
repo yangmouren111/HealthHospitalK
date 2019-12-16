@@ -55,12 +55,12 @@ public class Show_InquiryAdaper extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         ((MyViewholder) holder).show_inner_name.setText(list.get(position).departmentName);
         ((MyViewholder) holder).show_inner.setImageURI(Uri.parse(list.get(position).pic));
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                listener.onClick(list.get(position).id);
-//            }
-//        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(list.get(position).id);
+            }
+        });
     }
 
     @Override

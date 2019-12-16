@@ -66,11 +66,11 @@
         android:layout_centerVertical="true"
         android:textStyle="bold"
         />
-    <androidx.recyclerview.widget.RecyclerView
+    <com.wd.health_main.seach.HotViewGroup
         android:id="@+id/search_view"
         android:layout_marginTop="@dimen/dp_20"
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_20"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content"></com.wd.health_main.seach.HotViewGroup>
 </LinearLayout>
