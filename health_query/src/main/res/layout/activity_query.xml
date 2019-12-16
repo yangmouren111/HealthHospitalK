@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50">
+        <ImageView
+            android:background="@drawable/wallet_icon_clock_n"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/dp_32"
+            android:layout_height="@dimen/dp_32"
+            android:layout_marginLeft="@dimen/dp_20"
+            />
+        <ImageView
+            android:background="@drawable/common_nav_message_black_n"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"/>
+    </RelativeLayout>
+    <View
+        android:background="#CFCFCF"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_3"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/query_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_36"/>
+    <View
+        android:background="#CFCFCF"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_2"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20">
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_20"
+                android:textColor="#333333"
+                android:id="@+id/tv_zh"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="综合"
+                android:textSize="@dimen/sp_14"
+                android:padding="@dimen/dp_6"
+                android:gravity="center"></TextView>
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_20"
+                android:textColor="#333333"
+                android:id="@+id/tv_hp"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="好评"
+                android:textSize="@dimen/sp_14"
+                android:padding="@dimen/dp_6"
+                android:gravity="center"></TextView>
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_20"
+                android:textColor="#333333"
+                android:id="@+id/tv_zxs"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="咨询数"
+                android:textSize="@dimen/sp_14"
+                android:padding="@dimen/dp_6"
+                android:gravity="center"></TextView>
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_20"
+                android:textColor="#333333"
+                android:id="@+id/tv_price"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="价格"
+                android:textSize="@dimen/sp_14"
+                android:padding="@dimen/dp_6"
+                android:gravity="center"></TextView>
+
+        </LinearLayout>
+        <View
+            android:background="#CFCFCF"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"/>
+
+        <LinearLayout
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:orientation="vertical">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_marginTop="@dimen/dp_16"
+                android:id="@+id/sdv_pic"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_200"
+                app:actualImageScaleType="fitXY"
+                app:retryImageScaleType="fitXY"
+                app:backgroundImage="@android:color/background_light"
+                android:layout_marginRight="@dimen/dp_80"
+                android:layout_marginLeft="@dimen/dp_80"></com.facebook.drawee.view.SimpleDraweeView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10">
+
+                <TextView
+                    android:layout_marginTop="@dimen/dp_13"
+                    android:textColor="#333333"
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="杨教授"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:textColor="#333333"
+                    android:id="@+id/tv_jobTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="副主任"
+                    android:textSize="@dimen/sp_10"
+                    android:layout_alignBottom="@+id/tv_name"
+                    android:layout_toRightOf="@+id/tv_name"
+                    android:layout_marginLeft="@dimen/dp_30"></TextView>
+
+                <TextView
+                    android:textColor="#333333"
+                    android:id="@+id/tv_inauguralHospital"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="就职医院"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_below="@+id/tv_name"
+                    android:layout_marginTop="@dimen/dp_10"></TextView>
+
+                <TextView
+                    android:textColor="#333333"
+                    android:id="@+id/tv_praiseNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="好评率   98%"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_below="@+id/tv_inauguralHospital"
+                    android:layout_marginTop="@dimen/dp_10"></TextView>
+
+                <TextView
+                    android:textColor="#333333"
+                    android:id="@+id/tv_serverNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="服务患者数    18"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_toRightOf="@id/tv_praiseNum"
+                    android:layout_alignBottom="@id/tv_praiseNum"
+                    android:layout_marginLeft="@dimen/dp_30"></TextView>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:textColor="#333333"
+                    android:id="@+id/tv_servicePrice"
+                    android:layout_weight="6"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="@dimen/dp_40"
+                    android:text="服务价钱/次"
+                    android:textSize="@dimen/sp_16"
+                    android:padding="@dimen/dp_8"
+                    android:gravity="center"></TextView>
+
+                <TextView
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:id="@+id/tv_ask"
+                    android:layout_weight="4"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:text="立即咨询"
+                    android:textSize="@dimen/sp_16"
+                    android:padding="@dimen/dp_8"
+                    android:gravity="center"
+                    android:background="#03A9F4"
+                    android:textColor="@android:color/background_light"></TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdv_left"
+                android:layout_width="@dimen/dp_25"
+                android:layout_height="@dimen/dp_30"
+                app:placeholderImage="@drawable/common_list_previous_n"
+                android:layout_centerVertical="true"></com.facebook.drawee.view.SimpleDraweeView>
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdv_right"
+                android:layout_width="@dimen/dp_25"
+                android:layout_height="@dimen/dp_30"
+                app:placeholderImage="@drawable/common_information_next_n"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"></com.facebook.drawee.view.SimpleDraweeView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_doctor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_26"
+                android:layout_marginRight="@dimen/dp_26"></androidx.recyclerview.widget.RecyclerView>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

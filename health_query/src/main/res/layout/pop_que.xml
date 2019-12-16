@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/dp_197"
+        android:layout_height="@dimen/dp_112"
+        app:cardCornerRadius="@dimen/dp_10"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            >
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_80"
+            android:text="本次咨询将扣除500H币!"
+            android:gravity="center"
+            />
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+
+                >
+     <TextView
+         android:id="@+id/pop_qu_que"
+         android:layout_width="0dp"
+         android:layout_weight="1"
+         android:layout_height="match_parent"
+         android:text="取消"
+         android:gravity="center"
+         android:background="#F2F2F2"
+         />
+        <TextView
+            android:id="@+id/pop_but_que"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="去咨询"
+            android:gravity="center"
+            android:background="#3087ea"
+            />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
