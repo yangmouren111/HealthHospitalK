@@ -3,9 +3,8 @@ package com.wd.health_vedio.view.activity;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
-import android.content.Context;
+import android.app.Service;
 import android.media.MediaPlayer;
-import android.opengl.ETC1;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +12,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,19 +22,16 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
-
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.kd.easybarrage.Barrage;
 import com.kd.easybarrage.BarrageView;
 import com.wd.common.bean.VideoComment;
 import com.wd.common.bean.VideoGroup;
 import com.wd.common.bean.VideoVo;
 import com.wd.common.core.DataCall;
-import com.wd.common.core.WDActivity;
 import com.wd.common.core.WDFragment;
 import com.wd.common.core.exception.ApiException;
 import com.wd.health_vedio.R;
@@ -50,39 +47,32 @@ import com.wd.health_vedio.presenter.VideoBuyPresenter;
 import com.wd.health_vedio.view.iview.InfoDialog;
 import com.wd.health_vedio.view.viewpager.OnViewPagerListener;
 import com.wd.health_vedio.view.viewpager.ViewPagerLayoutManager;
-
 import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
-
 import butterknife.BindView;
 
-import static com.wd.common.core.WDApplication.getContext;
-
 public class VideoActivity extends WDFragment {
-
 
     @BindView(R2.id.video_group_recycler)
     RecyclerView mGroup;
     @BindView(R2.id.video_drop_down)
     ImageView dropDown;
-    private static final String TAG = "ViewPagerActivity";
     @BindView(R2.id.video_recycler)
     RecyclerView mRecyclerView;
     @BindView(R2.id.video_danmu)
     BarrageView mDanmu;
     private ViewPagerLayoutManagerAdapter mVideoAdapter;
     private ViewPagerLayoutManager mLayoutManager;
-
     private FindVideoVoPresenter findVideoVoPresenter;
     private FindVideoCategoryPresenter findVideoCategoryPresenter;
     private VideoGroupAdapter videoGroupAdapter;
+    private static final String TAG = "ViewPagerActivity";
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 0) {
-
                 ObjectAnimator imageX = new ObjectAnimator().ofFloat(dropDown, "translationX", 0, 0);
                 ObjectAnimator imageY = new ObjectAnimator().ofFloat(dropDown, "translationY", -250f, 0);
                 //组合动画
@@ -90,7 +80,6 @@ public class VideoActivity extends WDFragment {
                 imageSer.playTogether(imageX, imageY); //设置动画
                 imageSer.setDuration(1000);  //设置动画时间
                 imageSer.start();
-
 
                 ObjectAnimator groupX = new ObjectAnimator().ofFloat(mGroup, "translationX", 0, 0);
                 ObjectAnimator groupY = new ObjectAnimator().ofFloat(mGroup, "translationY", 200f, 0);
@@ -103,11 +92,11 @@ public class VideoActivity extends WDFragment {
         }
     };
     private VideoBuyPresenter videoBuyPresenter;
-    private AlertDialog alertDialog;
     private InfoDialog dialog;
     private AddVideoCommentPresenter addVideoCommentPresenter;
     private FindVideoCommentPresenter findVideoCommentPresenter;
     private AddUserVideoPresenter addUserVideoPresenter;
+    private Handler hand;
 
     @Override
     public String getPageName() {
@@ -142,7 +131,7 @@ public class VideoActivity extends WDFragment {
 
         initListener();
     }
-
+    //收藏视频
     class AddUserVideo implements DataCall{
 
         @Override
@@ -156,7 +145,6 @@ public class VideoActivity extends WDFragment {
             Toast.makeText(getContext(), "收藏失败", Toast.LENGTH_SHORT).show();
         }
     }
-
     //查询视频评论列表
     class FindCommentBack implements DataCall<List<VideoComment>>{
         @Override
@@ -171,7 +159,6 @@ public class VideoActivity extends WDFragment {
 
         }
     }
-
     //发表视频评论（弹幕）
     class AddVideoCommentBack implements DataCall{
         @Override
@@ -184,7 +171,6 @@ public class VideoActivity extends WDFragment {
             Toast.makeText(getContext(), "发布失败", Toast.LENGTH_SHORT).show();
         }
     }
-
     //健康课堂视频购买
     class VideoBuyBack implements DataCall{
         @Override
@@ -196,16 +182,16 @@ public class VideoActivity extends WDFragment {
         @Override
         public void fail(ApiException data, Object... args) {
             Toast.makeText(getContext(), "购买失败", Toast.LENGTH_SHORT).show();
+
         }
     }
-
     //根据视频类目查询视频列表
     class FindVideoCategoryBack implements DataCall<List<VideoGroup>> {
         @Override
         public void success(final List<VideoGroup> data, Object... args) {
             videoGroupAdapter.addAll(data);
             videoGroupAdapter.notifyDataSetChanged();
-
+            mVideoAdapter.notifyDataSetChanged();
             findVideoVoPresenter.reqeust(1, "1", data.get(0).id);
 
             videoGroupAdapter.setVideoGroupItemOnClickListener(new VideoGroupAdapter.VideoGroupItemOnClickListener() {
@@ -240,8 +226,7 @@ public class VideoActivity extends WDFragment {
 
         }
     }
-
-
+    //设置监听
     private void initListener() {
         mVideoAdapter.setSetUserVideo(new ViewPagerLayoutManagerAdapter.SetUserVideo() {
             @Override
@@ -332,17 +317,30 @@ public class VideoActivity extends WDFragment {
                         }
                     }
                 });
+                final EditText setComment = view.findViewById(R.id.video_setComment);
+                setComment.requestFocus();
+                handler.postDelayed(new Runnable() {
 
-                //直接显示在参照View 的左下方
-                //popWindow.showAsDropDown(View anchor);
-                //可以通过xoff，yOff,来调节x,y方向的偏移
-                //popWindow.showAsDropDown(View anchor, int xoff, int off)
-                //相对于整个屏幕的window而言，通过gravity调整显示在左、上、右、下、中. x,y调整两个方向的偏移
-                //popWindow.showAsDropDown(View parent, int gravity, int x, int y)
-
+                    @Override
+                    public void run() {
+                        InputMethodManager imm = (InputMethodManager) setComment.getContext().getSystemService(Service.INPUT_METHOD_SERVICE);
+                        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                    }
+                }, 1);
+                setComment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!edd.getText().toString().equals("")){
+                            mDanmu.addBarrage(new Barrage(String.valueOf(edd.getText()), R.color.colorAccent));
+                            addVideoCommentPresenter.reqeust(1,"1",videoId,String.valueOf(edd.getText()));
+                            popWindow.dismiss();
+                        }else {
+                            popWindow.dismiss();
+                        }
+                    }
+                });
             }
         });
-
 
         dropDown.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -354,7 +352,6 @@ public class VideoActivity extends WDFragment {
                 imageSer.playTogether(imageX, imageY); //设置动画
                 imageSer.setDuration(1000);  //设置动画时间
                 imageSer.start();
-
 
                 ObjectAnimator groupX = new ObjectAnimator().ofFloat(mGroup, "translationX", 0, 0);
                 ObjectAnimator groupY = new ObjectAnimator().ofFloat(mGroup, "translationY", 0, 200f);
@@ -400,15 +397,56 @@ public class VideoActivity extends WDFragment {
 
     private void playVideo(int position) {
         View itemView = mRecyclerView.getChildAt(0);
+        if (itemView!=null){
+            setContentView(itemView);
+        }
+    }
+
+    private void setContentView(View itemView) {
         final VideoView videoView = itemView.findViewById(R.id.video_view);
         final ImageView imgPlay = itemView.findViewById(R.id.img_play);
         final ImageView imgThumb = itemView.findViewById(R.id.img_thumb);
         final RelativeLayout rootView = itemView.findViewById(R.id.root_view);
         final SeekBar seekBar = itemView.findViewById(R.id.video_mySeekBar);
+        final TextView tryLook = itemView.findViewById(R.id.video_tryLook);
+        final LinearLayout tryView = itemView.findViewById(R.id.video_tryView);
         final MediaPlayer[] mediaPlayer = new MediaPlayer[1];
 
         videoView.start();
 
+        hand = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if (msg.what == 2){
+                    int a = (int) msg.obj;
+                    hand.removeCallbacksAndMessages(null);
+                    if (a>0){
+                        a--;
+                        tryLook.setText(a + "S");
+                        Message message = new Message();
+                        message.obj = a;
+                        message.what = 2;
+                        hand.sendMessageDelayed(message,1000);
+                    }else {
+                        hand.removeCallbacksAndMessages(null);
+                        videoView.stopPlayback();
+                    }
+
+                }
+            }
+        };
+        hand.removeCallbacksAndMessages(null);
+        mVideoAdapter.setSetTryLook(new ViewPagerLayoutManagerAdapter.SetTryLook() {
+            @Override
+            public void isTry(int miss) {
+                    Message message = new Message();
+                    message.obj = 15;
+                    message.what = 2;
+                    hand.sendMessageDelayed(message,1000);
+
+            }
+        });
 
         videoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
             @Override
@@ -420,10 +458,8 @@ public class VideoActivity extends WDFragment {
             }
         });
 
-
         imgPlay.setOnClickListener(new View.OnClickListener() {
             boolean isPlaying = true;
-
             @Override
             public void onClick(View v) {
                 if (videoView.isPlaying()) {
@@ -438,19 +474,15 @@ public class VideoActivity extends WDFragment {
             }
         });
     }
-
     //将长度转换为时间
     StringBuilder mFormatBuilder = new StringBuilder();
     Formatter mFormatter = new Formatter(mFormatBuilder, Locale.getDefault());
-
     //将长度转换为时间
     private String stringForTime(int timeMs) {
         int totalSeconds = timeMs / 1000;
-
         int seconds = totalSeconds % 60;
         int minutes = (totalSeconds / 60) % 60;
         int hours = totalSeconds / 3600;
-
         mFormatBuilder.setLength(0);
         if (hours > 0) {
             return mFormatter.format("%d:%02d:%02d", hours, minutes, seconds).toString();
@@ -459,18 +491,17 @@ public class VideoActivity extends WDFragment {
         }
     }
 
-
     private void releaseVideo(int index) {
         View itemView = mRecyclerView.getChildAt(index);
-        final VideoView videoView = itemView.findViewById(R.id.video_view);
-        final ImageView imgThumb = itemView.findViewById(R.id.img_thumb);
-        final ImageView imgPlay = itemView.findViewById(R.id.img_play);
-        videoView.stopPlayback();
-        imgThumb.animate().alpha(1).start();
-        imgPlay.animate().alpha(0f).start();
-
+        if (itemView!=null){
+            final VideoView videoView = itemView.findViewById(R.id.video_view);
+            final ImageView imgThumb = itemView.findViewById(R.id.img_thumb);
+            final ImageView imgPlay = itemView.findViewById(R.id.img_play);
+            videoView.stopPlayback();
+            imgThumb.animate().alpha(1).start();
+            imgPlay.animate().alpha(0f).start();
+        }
     }
-
 
     protected void destoryData() {
         handler.removeCallbacksAndMessages(null);
