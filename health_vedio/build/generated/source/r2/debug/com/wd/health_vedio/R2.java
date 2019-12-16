@@ -5046,13 +5046,16 @@ public final class R2 {
     public static final int tooltip_frame_light = 0x7f0900c0;
 
     @DrawableRes
-    public static final int video_title = 0x7f0900c1;
+    public static final int video_shikan = 0x7f0900c1;
 
     @DrawableRes
-    public static final int video_window = 0x7f0900c2;
+    public static final int video_title = 0x7f0900c2;
 
     @DrawableRes
-    public static final int video_window_button = 0x7f0900c3;
+    public static final int video_window = 0x7f0900c3;
+
+    @DrawableRes
+    public static final int video_window_button = 0x7f0900c4;
   }
 
   public static final class id {
@@ -5954,52 +5957,58 @@ public final class R2 {
     public static final int video_setComment = 0x7f0c012b;
 
     @IdRes
-    public static final int video_videoConnet = 0x7f0c012c;
+    public static final int video_tryLook = 0x7f0c012c;
 
     @IdRes
-    public static final int video_videoName = 0x7f0c012d;
+    public static final int video_tryView = 0x7f0c012d;
 
     @IdRes
-    public static final int video_view = 0x7f0c012e;
+    public static final int video_videoConnet = 0x7f0c012e;
 
     @IdRes
-    public static final int video_window_back = 0x7f0c012f;
+    public static final int video_videoName = 0x7f0c012f;
 
     @IdRes
-    public static final int video_window_buyBtn = 0x7f0c0130;
+    public static final int video_view = 0x7f0c0130;
 
     @IdRes
-    public static final int video_window_chong = 0x7f0c0131;
+    public static final int video_window_back = 0x7f0c0131;
 
     @IdRes
-    public static final int video_window_myManery = 0x7f0c0132;
+    public static final int video_window_buyBtn = 0x7f0c0132;
 
     @IdRes
-    public static final int video_window_videoPrice = 0x7f0c0133;
+    public static final int video_window_chong = 0x7f0c0133;
 
     @IdRes
-    public static final int view_offset_helper = 0x7f0c0134;
+    public static final int video_window_myManery = 0x7f0c0134;
 
     @IdRes
-    public static final int visible = 0x7f0c0135;
+    public static final int video_window_videoPrice = 0x7f0c0135;
 
     @IdRes
-    public static final int volume_image_tip = 0x7f0c0136;
+    public static final int view_offset_helper = 0x7f0c0136;
 
     @IdRes
-    public static final int volume_progressbar = 0x7f0c0137;
+    public static final int visible = 0x7f0c0137;
 
     @IdRes
-    public static final int withText = 0x7f0c0138;
+    public static final int volume_image_tip = 0x7f0c0138;
 
     @IdRes
-    public static final int wrap = 0x7f0c0139;
+    public static final int volume_progressbar = 0x7f0c0139;
 
     @IdRes
-    public static final int wrap_content = 0x7f0c013a;
+    public static final int withText = 0x7f0c013a;
 
     @IdRes
-    public static final int xbanner_pointId = 0x7f0c013b;
+    public static final int wrap = 0x7f0c013b;
+
+    @IdRes
+    public static final int wrap_content = 0x7f0c013c;
+
+    @IdRes
+    public static final int xbanner_pointId = 0x7f0c013d;
   }
 
   public static final class integer {

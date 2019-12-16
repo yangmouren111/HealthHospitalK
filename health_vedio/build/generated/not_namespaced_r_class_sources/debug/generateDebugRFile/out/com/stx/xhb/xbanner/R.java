@@ -39,7 +39,7 @@ public final class R {
         public static int LEFT = 0x7f0c0018;
         public static int RIGHT = 0x7f0c0020;
         public static int TOP = 0x7f0c0024;
-        public static int xbanner_pointId = 0x7f0c013b;
+        public static int xbanner_pointId = 0x7f0c013d;
     }
     public static final class string {
         private string() {}

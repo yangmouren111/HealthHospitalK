@@ -792,9 +792,9 @@ public final class R {
         public static int touch_outside = 0x7f0c010c;
         public static int up = 0x7f0c0118;
         public static int useLogo = 0x7f0c0119;
-        public static int view_offset_helper = 0x7f0c0134;
-        public static int withText = 0x7f0c0138;
-        public static int wrap_content = 0x7f0c013a;
+        public static int view_offset_helper = 0x7f0c0136;
+        public static int withText = 0x7f0c013a;
+        public static int wrap_content = 0x7f0c013c;
     }
     public static final class integer {
         private integer() {}

@@ -1719,9 +1719,10 @@ public final class R {
         public static int selector_banner_point = 0x7f0900be;
         public static int tooltip_frame_dark = 0x7f0900bf;
         public static int tooltip_frame_light = 0x7f0900c0;
-        public static int video_title = 0x7f0900c1;
-        public static int video_window = 0x7f0900c2;
-        public static int video_window_button = 0x7f0900c3;
+        public static int video_shikan = 0x7f0900c1;
+        public static int video_title = 0x7f0900c2;
+        public static int video_window = 0x7f0900c3;
+        public static int video_window_button = 0x7f0900c4;
     }
     public static final class id {
         private id() {}
@@ -2025,22 +2026,24 @@ public final class R {
         public static int video_removeUserVideo = 0x7f0c0129;
         public static int video_seedComment = 0x7f0c012a;
         public static int video_setComment = 0x7f0c012b;
-        public static int video_videoConnet = 0x7f0c012c;
-        public static int video_videoName = 0x7f0c012d;
-        public static int video_view = 0x7f0c012e;
-        public static int video_window_back = 0x7f0c012f;
-        public static int video_window_buyBtn = 0x7f0c0130;
-        public static int video_window_chong = 0x7f0c0131;
-        public static int video_window_myManery = 0x7f0c0132;
-        public static int video_window_videoPrice = 0x7f0c0133;
-        public static int view_offset_helper = 0x7f0c0134;
-        public static int visible = 0x7f0c0135;
-        public static int volume_image_tip = 0x7f0c0136;
-        public static int volume_progressbar = 0x7f0c0137;
-        public static int withText = 0x7f0c0138;
-        public static int wrap = 0x7f0c0139;
-        public static int wrap_content = 0x7f0c013a;
-        public static int xbanner_pointId = 0x7f0c013b;
+        public static int video_tryLook = 0x7f0c012c;
+        public static int video_tryView = 0x7f0c012d;
+        public static int video_videoConnet = 0x7f0c012e;
+        public static int video_videoName = 0x7f0c012f;
+        public static int video_view = 0x7f0c0130;
+        public static int video_window_back = 0x7f0c0131;
+        public static int video_window_buyBtn = 0x7f0c0132;
+        public static int video_window_chong = 0x7f0c0133;
+        public static int video_window_myManery = 0x7f0c0134;
+        public static int video_window_videoPrice = 0x7f0c0135;
+        public static int view_offset_helper = 0x7f0c0136;
+        public static int visible = 0x7f0c0137;
+        public static int volume_image_tip = 0x7f0c0138;
+        public static int volume_progressbar = 0x7f0c0139;
+        public static int withText = 0x7f0c013a;
+        public static int wrap = 0x7f0c013b;
+        public static int wrap_content = 0x7f0c013c;
+        public static int xbanner_pointId = 0x7f0c013d;
     }
     public static final class integer {
         private integer() {}
@@ -2179,13 +2182,15 @@ public final class R {
         public static int drop_down = 0x7f110010;
         public static int header_icon_2 = 0x7f110011;
         public static int heart_icon = 0x7f110012;
-        public static int img_video_1 = 0x7f110013;
-        public static int img_video_2 = 0x7f110014;
-        public static int msg_icon = 0x7f110015;
-        public static int my_icon_video_n = 0x7f110016;
-        public static int search_icon = 0x7f110017;
-        public static int send_meses = 0x7f110018;
-        public static int share_icon = 0x7f110019;
+        public static int ic_launcher = 0x7f110013;
+        public static int ic_launcher_round = 0x7f110014;
+        public static int img_video_1 = 0x7f110015;
+        public static int img_video_2 = 0x7f110016;
+        public static int msg_icon = 0x7f110017;
+        public static int my_icon_video_n = 0x7f110018;
+        public static int search_icon = 0x7f110019;
+        public static int send_meses = 0x7f11001a;
+        public static int share_icon = 0x7f11001b;
     }
     public static final class raw {
         private raw() {}

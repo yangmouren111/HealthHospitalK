@@ -99,8 +99,8 @@ public final class R {
         public static int video_current_time = 0x7f0c011d;
         public static int video_item = 0x7f0c0125;
         public static int video_quality_wrapper_area = 0x7f0c0127;
-        public static int volume_image_tip = 0x7f0c0136;
-        public static int volume_progressbar = 0x7f0c0137;
+        public static int volume_image_tip = 0x7f0c0138;
+        public static int volume_progressbar = 0x7f0c0139;
     }
     public static final class layout {
         private layout() {}

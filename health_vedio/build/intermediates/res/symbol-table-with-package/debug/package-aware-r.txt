@@ -1682,6 +1682,7 @@ drawable seekbar_style
 drawable selector_banner_point
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable video_shikan
 drawable video_title
 drawable video_window
 drawable video_window_button
@@ -1984,6 +1985,8 @@ id video_recycler
 id video_removeUserVideo
 id video_seedComment
 id video_setComment
+id video_tryLook
+id video_tryView
 id video_videoConnet
 id video_videoName
 id video_view
@@ -2122,6 +2125,8 @@ mipmap common_tab_video_s
 mipmap drop_down
 mipmap header_icon_2
 mipmap heart_icon
+mipmap ic_launcher
+mipmap ic_launcher_round
 mipmap img_video_1
 mipmap img_video_2
 mipmap msg_icon
