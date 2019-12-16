@@ -105,7 +105,9 @@ public class ViewPagerLayoutManagerAdapter extends RecyclerView.Adapter<ViewPage
                     onVideoBuy.videoBuy(videoVo.id,videoVo.price);
                 }
             });
-            setTryLook.isTry(15);
+            if (setTryLook!=null)
+                setTryLook.isTry(15);
+
         }else {
             holder.tryView.setVisibility(View.GONE);
             holder.videoView.setVideoURI(Uri.parse(videoVo.originalUrl));

@@ -172,7 +172,7 @@ public class QueryActivity extends WDActivity {
         //activity的布局
         View rootView = LayoutInflater.from(QueryActivity.this).inflate(R.layout.activity_query, null);
         //位置
-        popupWindow.showAtLocation(rootView, Gravity.BOTTOM, 100, 100);
+        popupWindow.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
 
     }
 
