@@ -1,5 +1,7 @@
 package health.wd.com.health_query.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,6 +34,7 @@ import health.wd.com.health_query.R;
 import health.wd.com.health_query.R2;
 import health.wd.com.health_query.adapter.QueryAdapter;
 import health.wd.com.health_query.adapter.Query_Doctor_Adapter;
+import health.wd.com.health_query.core.CustomDialog;
 import health.wd.com.health_query.presenter.ConsultDoctorPresenter;
 import health.wd.com.health_query.presenter.FindDoctorListPresenter;
 import health.wd.com.health_query.presenter.QueryPresenter;
@@ -80,6 +83,7 @@ public class QueryActivity extends WDActivity {
     private double result;
     private int servicepr;
     private PopupWindow popupWindow;
+    private CustomDialog customDialog;
 
     @Override
     protected int getLayoutId() {
@@ -139,40 +143,47 @@ public class QueryActivity extends WDActivity {
     }
 
     private void showPopWindow() {
-        //找到pop弹窗布局
-        View view = LayoutInflater.from(QueryActivity.this).inflate(R.layout.pop_advisory, null);
-        popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        popupWindow.setContentView(view);
-        //设置高度
-        popupWindow.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
-        popupWindow.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
-        // 设置PopupWindow是否能响应外部点击事件
-        popupWindow.setOutsideTouchable(true);
-// 设置PopupWindow是否能响应点击事件
-
-        popupWindow.setFocusable(true);
-
-        //找子布局控件
-        TextView but = view.findViewById(R.id.pop_but);
-        TextView qu = view.findViewById(R.id.pop_qu);
-        //去咨询
-        but.setOnClickListener(new View.OnClickListener() {
+//        //找到pop弹窗布局
+//       // View view = LayoutInflater.from(QueryActivity.this).inflate(R.layout.pop_advisory, null);
+//        View view = getLayoutInflater().inflate(R.layout.pop_advisory, null);
+//        AlertDialog.Builder builder = new AlertDialog.Builder(QueryActivity.this);
+//
+//        builder.setMessage("本次咨询将扣除500H币!").setPositiveButton("取消", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.dismiss();
+//            }
+//        }).setNegativeButton("去咨询", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.dismiss();
+//            }
+//        });
+//        builder.create().show();
+//
+//        //找子布局控件
+//        TextView but = view.findViewById(R.id.pop_but);
+//        TextView qu = view.findViewById(R.id.pop_qu);
+//        View view = getLayoutInflater().inflate(R.layout.pop_advisory, null);
+//        customDialog = new CustomDialog(this, 0, 0, view, R.style.DialogTheme);
+//        customDialog.setCancelable(true);
+//        customDialog.show();
+        final CustomDialog dialog = new CustomDialog(QueryActivity.this);
+        dialog.setMessage("本次咨询将扣除500H币!")
+//                .setTitle("系统提示")
+                .setSingle(true).setOnClickBottomListener(new CustomDialog.OnClickBottomListener() {
             @Override
-            public void onClick(View v) {
+            public void onPositiveClick() {
+                dialog.dismiss();
+                Toast.makeText(QueryActivity.this,"xxxx",Toast.LENGTH_SHORT).show();
+            }
 
-            }
-        });
-        //取消
-        qu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
+            public void onNegtiveClick() {
+                dialog.dismiss();
+                Toast.makeText(QueryActivity.this,"ssss",Toast.LENGTH_SHORT).show();
             }
-        });
-        //activity的布局
-        View rootView = LayoutInflater.from(QueryActivity.this).inflate(R.layout.activity_query, null);
-        //位置
-        popupWindow.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+        }).show();
 
     }
 
