@@ -3,6 +3,8 @@
     package="com.wd.health_main">
 
     <application>
+        <activity android:name=".activity.SeekActivity"></activity>
+        <activity android:name=".activity.ParticularsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +19,7 @@
         <activity android:name=".activity.WriteSickCircleActivity" />
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.MoreActivity" />
-        <activity android:name=".activity.BannerActivity"></activity>
+        <activity android:name=".activity.BannerActivity" />
     </application>
 
 </manifest>

@@ -61,13 +61,12 @@ public class SearchActivity extends WDActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         searchRecy.setLayoutManager(linearLayoutManager);
         searchRecy.setAdapter(searchAdapter);
+
     }
 
     @Override
     protected void destoryData() {
-
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

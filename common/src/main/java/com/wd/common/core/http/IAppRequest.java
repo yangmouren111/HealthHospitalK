@@ -6,10 +6,12 @@ import com.wd.common.bean.DepartmentBean;
 import com.wd.common.bean.DrugsCateBean;
 import com.wd.common.bean.DrugsKonwBean;
 import com.wd.common.bean.DrugsledgeBean;
+import com.wd.common.bean.DuiyingBean;
 import com.wd.common.bean.FindDoctorListBean;
 import com.wd.common.bean.FormaBean;
 import com.wd.common.bean.HomePageSearch;
 import com.wd.common.bean.InformaBean;
+import com.wd.common.bean.KeshiBean;
 import com.wd.common.bean.KnowledgeBean;
 import com.wd.common.bean.PlateBean;
 import com.wd.common.bean.PopularSearch;
@@ -24,21 +26,14 @@ import retrofit2.http.Header;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
-import com.wd.common.bean.BDResult;
-import com.wd.common.bean.Result;
+import com.wd.common.bean.SeekBean;
 import com.wd.common.bean.VideoComment;
 import com.wd.common.bean.VideoGroup;
 import com.wd.common.bean.VideoVo;
 
-import java.util.List;
-
-import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 /**
  * @author dingtao
@@ -198,4 +193,17 @@ public interface IAppRequest {
     Observable<Result<InformaBean>> endInquiry(@Header("userId") String userId,
                                                @Header("sessionId") String sessionId,
                                                @Field("doctorId") int doctorId);
+    //第二页面科室
+    //  查询科室列表  http://172.17.8.100/health/share/knowledgeBase/v1/findDepartment
+    @GET("health/share/knowledgeBase/v1/findDepartment")
+    Observable<Result<List<KeshiBean>>> findKeshi();
+
+    //病友圈展示列表
+    @GET("health/doctor/sickCircle/v1/findSickCircleList")
+    Observable<Result<List<DuiyingBean>>> findduiying(@Query("departmentId") int departmentId, @Query("page") int page, @Query("count") int count);
+
+    //首页搜索 http://172.17.8.100/health/share/v1/homePageSearch
+    @GET("health/share/v1/homePageSearch")
+    Observable<Result<SeekBean>> seek(@Query("keyWord") String keyWord);
+
 }
